@@ -1,0 +1,82 @@
+.game-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+  }
+  
+  h1 {
+    font-size: 32px;
+    color: #333;
+  }
+  
+  .button-container {
+    margin-top: 40px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin: 0 10px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  .carta{
+    margin-top: 25px;
+    width: 200px;
+  }
+  
+  .intentosRacha {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #555;
+  }
+  
+  #numero-actual {
+    margin-top: 20px;
+    font-size: 32px;
+    color: #333;
+  }
+
+  .start-button-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .start-button {
+    padding: 15px 30px;
+    font-size: 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .start-button:hover {
+    background-color: #0056b3;
+  }
+
+  .resultado-correcto {
+    margin-top: 10px;
+    font-size: 24px;
+    color: green;
+  }
+  
+  .resultado-incorrecto {
+    margin-top: 10px;
+    font-size: 24px;
+    color: red;
+  }
+  
+  .resultado-container {
+    margin-top: 20px;
+    font-size: 24px;
+  }

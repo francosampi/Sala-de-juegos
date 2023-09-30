@@ -1,0 +1,21 @@
+<header>
+    <h1>Registrarse</h1>
+</header>
+<form id="login_form" class="form_class">
+    <div class="form_div">
+        <label>Email:</label>
+        <input class="field_class" name="email" [(ngModel)]="email" type="text" placeholder="Ingresa su mail"
+            autofocus>
+        <label>Contraseña:</label>
+        <input id="pass" class="field_class" name="password" [(ngModel)]="password" type="password"
+            placeholder="Ingresa su contraseña">
+        <button class="submit_class" form="login_form"
+            (click)="registrarUsuario(this.email, this.password)">Registrar
+        </button>
+        <div class="info_div">
+            <p>¿Ya tiene una cuenta existente?</p>
+            <button routerLink="/login" class="redirect_class">Entrar</button>
+            <label>{{this.errorMessage}}</label>
+        </div>
+    </div>
+</form>

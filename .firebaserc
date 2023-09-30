@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "labo4-2-ejercitacion"
+  },
+  "targets": {
+    "labo4-2-ejercitacion": {
+      "hosting": {
+        "labo4-ejercicio4": [
+          "labo4-2-ejercitacion"
+        ]
+      }
+    }
+  }
+}

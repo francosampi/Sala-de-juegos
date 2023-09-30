@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+<div class="game-container">
+    <h1>¿Mayor o Menor?</h1>
+
+    <div *ngIf="!juegoIniciado" class="start-button-container">
+      <button class="start-button" (click)="iniciarJuego()">Empezar</button>
+    </div>
+  
+    <div *ngIf="juegoIniciado">
+        <p class="intentosRacha">Racha actual: {{ racha }}</p>
+
+        <img class="carta" [src]="getImagenCarta(numeroActual)" alt="Carta">
+
+        <p id="numero-actual">{{ numeroActual }}</p>
+        <div class="button-container">
+          <button (click)="adivinarMayor()">Mayor</button>
+          <button (click)="adivinarMenor()">Menor</button>
+        </div>
+        
+        <p class="intentosRacha">Intentos: {{ intentos }}</p>
+        
+        <div class="mt-4 mb-4">
+            <span *ngIf="primerCarta" [ngClass]="{'resultado-correcto': resultadoCorrecto, 'resultado-incorrecto': !resultadoCorrecto}">
+                {{ resultadoCorrecto ? '¡Correcto!' : 'Incorrecto' }}
+            </span>
+        </div>
+    </div>
+  </div>
