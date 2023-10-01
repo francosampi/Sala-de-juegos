@@ -4,12 +4,14 @@ import { NavbarModule } from '../navbar/navbar.module';
 import { JuegosRoutingModule } from './juegos-routing.module';
 import { JuegosComponent } from './menu-juegos/juegos.component';
 import { MayorOMenorComponent } from './mayor-o-menor/mayor-o-menor.component';
+import { AhorcadoComponent } from './ahorcado/ahorcado.component';
 
 
 @NgModule({
   declarations: [
     JuegosComponent,
-    MayorOMenorComponent
+    MayorOMenorComponent,
+    AhorcadoComponent
   ],
   imports: [
     CommonModule,

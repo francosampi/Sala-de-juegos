@@ -29,11 +29,18 @@ export class MayorOMenorComponent implements OnInit{
   }
 
   darCartaRandom(){
-    return Math.floor(Math.random() * 10) + 1;
+    let nuevoNumero: number;
+    
+    do{
+      nuevoNumero=Math.floor(Math.random() * 10) + 1;
+    }
+    while(nuevoNumero===this.numeroActual);
+
+    return nuevoNumero;
   }
 
   getImagenCarta(numero: number): string {
-    return `"../../../../../assets/juegos/cartas_rojas/Clovers_${numero}_white.png`;
+    return `"../../../../../assets/juegos/mayor-o-menor/cartas_rojas/Clovers_${numero}_white.png`;
   }
 
   resultadoFueCorrecto(){
