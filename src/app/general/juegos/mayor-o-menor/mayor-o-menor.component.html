@@ -1,20 +1,29 @@
 <app-navbar></app-navbar>
 <div id="game-container">
-    <h1>Mayor o Menor</h1>
-
     <div *ngIf="!juegoIniciado" class="start-button-container">
-      <button class="start-button" (click)="iniciarJuego()">Empezar</button>
+      <div id="wrapper">
+        <a (click)="iniciarJuego()" class="btn-empezar">
+          <div class="dots-container">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <span>Empezar</span>
+        </a>
+      </div>
     </div>
   
     <div *ngIf="juegoIniciado">
+        <h1>Mayor o Menor</h1>
         <p class="intentosRacha">Racha actual: {{ racha }}</p>
 
         <img class="carta" [src]="getImagenCarta(numeroActual)" alt="Carta">
 
         <p id="numero-actual">{{ numeroActual }}</p>
         <div class="button-container">
-          <button (click)="adivinarMayor()">Mayor</button>
-          <button (click)="adivinarMenor()">Menor</button>
+          <button class="btn-adivinar" (click)="adivinarMayor()">Mayor</button>
+          <button class="btn-adivinar" (click)="adivinarMenor()">Menor</button>
         </div>
         
         <p class="intentosRacha">Intentos: {{ intentos }}</p>

@@ -4,7 +4,7 @@ import { OnInit } from '@angular/core';
 @Component({
   selector: 'app-mayor-o-menor',
   templateUrl: './mayor-o-menor.component.html',
-  styleUrls: ['./mayor-o-menor.component.css']
+  styleUrls: ['./mayor-o-menor.component.css', '../juegos-btn-empezar.css']
 })
 export class MayorOMenorComponent implements OnInit{
   juegoIniciado: boolean = false;

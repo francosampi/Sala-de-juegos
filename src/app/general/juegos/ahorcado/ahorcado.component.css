@@ -71,9 +71,9 @@ button {
 }
 
 #btn-pista{
-    padding: 10px 10px;
-    font-size: 24px;
-    margin: 5px 5px;
+    padding: 2px 2px;
+    font-size: 20px;
+    margin: 15px 5px;
     cursor: pointer;
     background-color: #d2e28c;
     color: #000000;
@@ -81,6 +81,10 @@ button {
     border-radius: 12px;
     font-family: 'learners', sans-serif;
     text-transform: uppercase;
+}
+
+#btn-pista :hover{
+    background-color: #ffa602;
 }
 
 .start-button-container {

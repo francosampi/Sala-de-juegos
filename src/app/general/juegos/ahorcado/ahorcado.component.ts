@@ -38,7 +38,7 @@ const palabrasConPistas = [
 @Component({
   selector: 'app-ahorcado',
   templateUrl: './ahorcado.component.html',
-  styleUrls: ['./ahorcado.component.css']
+  styleUrls: ['./ahorcado.component.css', '../juegos-btn-empezar.css']
 })
 export class AhorcadoComponent implements OnInit {
   juegoIniciado: boolean = false;
