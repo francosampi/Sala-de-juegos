@@ -4,8 +4,8 @@ import { AngularToastifyModule } from 'angular-toastify';
 import { BienvenidoComponent } from './general/bienvenido/bienvenido.component';
 
 const routes: Routes = [
-  { path: "", component: BienvenidoComponent},
   { path: "login", loadChildren: () => import('./general/login/login.module').then(m => m.LoginModule) },
+  { path: "", component: BienvenidoComponent},
   { path: "registrar", loadChildren: () => import('./general/registrar/registrar.module').then(m => m.RegistrarModule) },
   { path: "juegos", loadChildren: () => import('./general/juegos/juegos.module').then(m => m.JuegosModule)},
   { path: "acercade", loadChildren: () => import('./general/acercade/acercade.module').then(m => m.AcercadeModule)},

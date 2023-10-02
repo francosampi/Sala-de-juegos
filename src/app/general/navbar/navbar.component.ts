@@ -12,14 +12,6 @@ export class NavbarComponent {
 
   constructor(private router: Router, private authService: AuthService) { }
 
-  irAJuegos() {
-    this.router.navigate(['/juegos']);
-  }
-
-  irAAcercaDe(){
-    this.router.navigate(['/acercade']);
-  }
-
   salir(){
     Swal.fire({
       title: '¿Desea cerrar sesión?',

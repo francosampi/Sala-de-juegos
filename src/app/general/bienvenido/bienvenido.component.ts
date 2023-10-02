@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/authentication/auth.service';
 
 @Component({
@@ -7,11 +6,20 @@ import { AuthService } from 'src/app/services/authentication/auth.service';
   templateUrl: './bienvenido.component.html',
   styleUrls: ['./bienvenido.component.css']
 })
-export class BienvenidoComponent{
+export class BienvenidoComponent implements OnInit{
 
   currentUser : string | undefined;
 
   mostrarBotones: boolean = false;
 
-  constructor(){}
+  constructor(private authService: AuthService){}
+
+  ngOnInit(): void {
+    const nombreUser = this.authService.getNombreUser();
+
+    if(nombreUser!=undefined)
+    {
+      this.currentUser = nombreUser
+    }
+  }
 }

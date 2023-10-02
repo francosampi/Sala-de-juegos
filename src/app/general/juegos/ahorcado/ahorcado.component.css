@@ -83,7 +83,7 @@ button {
     text-transform: uppercase;
 }
 
-#btn-pista :hover{
+#btn-pista:hover{
     background-color: #ffa602;
 }
 

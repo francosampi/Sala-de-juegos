@@ -10,7 +10,7 @@
             <div class="dot"></div>
             <div class="dot"></div>
           </div>
-          <span>Empezar</span>
+          <span>EMPEZAR</span>
         </a>
       </div>
     </div>
@@ -32,6 +32,7 @@
       <div id="teclado" class="container">
           <button
           *ngFor="let letra of 'abcdefghijklmnopqrstuvwxyz'.split(''); let i = index"
+          class="btn-letra"
           (click)="manejarAdivinanza(letra)"
           [disabled]="letrasPresionadas.has(letra)"
           [style.background-color]="botonesColores[letra] ? botonesColores[letra] : '#C4DAE4'"

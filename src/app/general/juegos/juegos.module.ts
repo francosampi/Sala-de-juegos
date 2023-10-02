@@ -5,6 +5,7 @@ import { JuegosRoutingModule } from './juegos-routing.module';
 import { JuegosComponent } from './menu-juegos/juegos.component';
 import { MayorOMenorComponent } from './mayor-o-menor/mayor-o-menor.component';
 import { AhorcadoComponent } from './ahorcado/ahorcado.component';
+import { ChatModule } from '../chat/chat.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { AhorcadoComponent } from './ahorcado/ahorcado.component';
   imports: [
     CommonModule,
     JuegosRoutingModule,
-    NavbarModule
+    NavbarModule,
+    ChatModule
   ],
   exports: [
     JuegosComponent

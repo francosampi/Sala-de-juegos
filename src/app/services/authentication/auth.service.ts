@@ -6,14 +6,25 @@ import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signO
 })
 export class AuthService {
   
-  mailUsuario: string | undefined;
-
   constructor(private auth: Auth) {
-    this.mailUsuario = this.auth.currentUser?.email?.toString();
   }
 
-  obtenerMailDelUser(){
-    return this.mailUsuario;
+  getUser(){
+    return this.auth.currentUser;
+  }
+
+  getNombreUser(){
+    let nombreUser: string | undefined='';
+
+    if(this.auth.currentUser?.email !== null)
+    {
+      const indiceArroba = this.auth.currentUser?.email?.indexOf('@');
+      if (indiceArroba !== -1) {
+        nombreUser = this.auth.currentUser?.email?.slice(0, indiceArroba);
+      }
+    }
+
+    return nombreUser;
   }
 
   registrarse(email: string, password: string){
