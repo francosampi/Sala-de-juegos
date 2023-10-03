@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { onSnapshot } from 'firebase/firestore';
 import { ChatMsj } from 'src/app/interfaces/chat-msj';
 import { AuthService } from 'src/app/services/authentication/auth.service';
 import { ChatService } from 'src/app/services/chat/chat.service';
@@ -8,13 +7,14 @@ import { ZonahorariaService } from 'src/app/services/zonahoraria/zonahoraria.ser
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+  styleUrls: ['./chat.component.css'],
 })
 export class ChatComponent implements OnInit {
 
   usuarioLogeado: any;
   mensaje:string='';
   mensajes:ChatMsj[]=[];
+  mostrarChat=false;
 
   constructor(private authService: AuthService, private chatService: ChatService, private zonaHorariaService: ZonahorariaService) {}
 
@@ -24,15 +24,6 @@ export class ChatComponent implements OnInit {
     this.chatService.getMsjChat().subscribe((listaMensajes)=>{
       this.mensajes=listaMensajes;
     });
-
-    /*
-    this.chatService.getMsjChat().subscribe((listaMensajes)=>{
-      if(listaMensajes!==null)
-      {
-        this.mensajes=listaMensajes;
-      }
-    });^
-    */
   }
 
   enviarMensaje(){
@@ -45,28 +36,34 @@ export class ChatComponent implements OnInit {
       texto: this.mensaje,
       fecha: fechaEnvio
     }
-    //this.mensajes.push(nuevoMensaje);
 
-    this.chatService.addMsjChat(nuevoMensaje);
+    this.chatService.addMsjChat(nuevoMensaje).then(()=>{
+      const enviarMensajeSnd = new Audio();
+      enviarMensajeSnd.src='../../../assets/chat/sonidos/msj-enviado.wav'
+      enviarMensajeSnd.play();
+  
+      this.mensaje='';
+  
+      setTimeout(() => {
+        this.scrollUltimoMensaje();
+      }, 20);
+    });
+  }
 
-    this.mensaje='';
-
+  mostrarChatYScrollear(){
+    this.mostrarChat=true;
+    
     setTimeout(() => {
       this.scrollUltimoMensaje();
     }, 20);
   }
 
   scrollUltimoMensaje() {
-    let elements = document.getElementsByClassName('msj');
-    let ultimoElemento = elements[elements.length - 1];
-    
-    if (ultimoElemento instanceof HTMLElement) {
-      let topPos = ultimoElemento.offsetTop;
-      let container = document.getElementById('mensajes-container');
-      
-      if (container) {
-        (container as HTMLElement).scrollTop = topPos;
-      }
+    const msjContainer = document.getElementById('mensajes-container');
+
+    if(msjContainer)
+    {
+      msjContainer.scrollTop = msjContainer.scrollHeight - msjContainer.clientHeight;
     }
   }
 }

@@ -6,19 +6,21 @@ import { JuegosComponent } from './menu-juegos/juegos.component';
 import { MayorOMenorComponent } from './mayor-o-menor/mayor-o-menor.component';
 import { AhorcadoComponent } from './ahorcado/ahorcado.component';
 import { ChatModule } from '../chat/chat.module';
+import { TablaPuntajesComponent } from './tabla-puntajes/tabla-puntajes.component';
 
 
 @NgModule({
   declarations: [
     JuegosComponent,
     MayorOMenorComponent,
-    AhorcadoComponent
+    AhorcadoComponent,
+    TablaPuntajesComponent
   ],
   imports: [
     CommonModule,
     JuegosRoutingModule,
     NavbarModule,
-    ChatModule
+    ChatModule,
   ],
   exports: [
     JuegosComponent

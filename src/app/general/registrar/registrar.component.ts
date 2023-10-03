@@ -19,46 +19,43 @@ export class RegistrarComponent {
 
   registrarUsuario(email: string, password: string) {
 
-      this.authService.registrarse(email, password).then(()=>{
+    this.authService.registrarse(email, password).then(() => {
 
-        Swal.fire({
-          title: 'Registrando usuario...',
-          timer: 1000,
-          timerProgressBar: true,
-          didOpen: () => {
-            Swal.showLoading();
-          }
-        }).then((result) => {
-          if (result.dismiss === Swal.DismissReason.timer) {
-            Swal.fire({
-              icon: 'success',
-              title: '¡Bienvenido!',
-              text: 'Tu cuenta ha sido creada.',
-            });
-          }
-
-          const logeo=this.logsService.addLog({
-            mail: this.email.toString(),
-            fecha: this.zonaHorariaService.getHoraArg(),
+      Swal.fire({
+        title: 'Registrando usuario...',
+        timer: 1000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading();
+        }
+      }).then((result) => {
+        if (result.dismiss === Swal.DismissReason.timer) {
+          Swal.fire({
+            icon: 'success',
+            title: '¡Bienvenido!',
+            text: 'Tu cuenta ha sido creada.',
           });
-          
-          this.router.navigate(['/']);
-          
-          console.log(logeo);
-        });
-      }).catch((e)=>{
-        let msj = 'Algo salió mal al registrar la cuenta...';
-
-        if (e.code == 'auth/email-already-in-use')
-        {
-          msj = 'El mail ' +email+ ' ya fue registrado...';
         }
 
-          Swal.fire({
-            icon: 'error',
-            title: 'Ups...',
-            text: msj,
-          });
+        this.logsService.addLog({
+          mail: this.email.toString(),
+          fecha: this.zonaHorariaService.getHoraArg(),
+        });
+
+        this.router.navigate(['/']);
+      });
+    }).catch((e) => {
+      let msj = 'Algo salió mal al registrar la cuenta...';
+
+      if (e.code == 'auth/email-already-in-use') {
+        msj = 'El mail ' + email + ' ya fue registrado...';
+      }
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Ups...',
+        text: msj,
+      });
     });
     /*
     var usuario = { 'username': username, 'password': password };

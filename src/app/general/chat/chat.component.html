@@ -37,29 +37,40 @@
 
       </div>
       -->
-    <div class="card chat-container" *ngIf="usuarioLogeado">
-        <div class="card-header">
+    
+    <div *ngIf="usuarioLogeado && !mostrarChat" class="chat-oculto-container">
+        <div class="chat-oculto-header" (click)="mostrarChatYScrollear()">
             Sala de chat
+            <img src="../../../assets/chat/chat-flecha.png" class="chat-btn-header chat-btn-header-ocultar">
+        </div>
+    </div>
+    
+    <div class="card chat-container" *ngIf="usuarioLogeado && mostrarChat">
+        <div class="card-header" (click)="mostrarChat=false">
+            Sala de chat
+            <img src="../../../assets/chat/chat-flecha.png" class="chat-btn-header">
         </div>
 
         <div class="card-body">
-            <div id="mensajes-container" class="mensajes-container">
-                <div *ngFor="let mensaje of mensajes" class="msj p-2 m-2"
-                    [ngClass]="usuarioLogeado.uid==mensaje.id ? 'msj-enviado' : 'msj-recibido'">
-                    <b>{{mensaje.user}}:</b>
-                    <p>
-                        {{mensaje.texto}}
-                    </p>
-                    <i class="msj-fecha">
-                        {{mensaje.fecha}}
-                    </i>
+            <div class="card-overlay">
+                <div id="mensajes-container" class="mensajes-container">
+                    <div *ngFor="let mensaje of mensajes" class="msj p-2 m-2"
+                        [ngClass]="usuarioLogeado.uid==mensaje.id ? 'msj-enviado' : 'msj-recibido'">
+                        <b>{{mensaje.user}}:</b>
+                        <p>
+                            {{mensaje.texto}}
+                        </p>
+                        <i class="msj-fecha">
+                            {{mensaje.fecha}}
+                        </i>
+                    </div>
                 </div>
             </div>
         </div>
 
         <form class="card-footer text-muted input-group" (ngSubmit)="enviarMensaje()">
             <input type="text" class="form-control" placeholder="Enviar mensaje..." [(ngModel)]="mensaje"
-                [ngModelOptions]="{standalone: true}">
+                [ngModelOptions]="{standalone: true}" required maxlength="40">
             <div class="input-group-append" (click)="enviarMensaje()">
                 <span class="input-group-text" id="basic-addon2">
                     <img class="input-img-enviar" src="../../../assets/chat/enviar.png" width="25px">

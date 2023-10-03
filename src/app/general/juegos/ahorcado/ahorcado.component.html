@@ -19,6 +19,8 @@
       <h1>Juego del Ahorcado</h1>
       <p class="intentosRacha">Intentos restantes: {{ intentosRestantes }}</p>
 
+      <img id="hombre-ahorcado" src='../../../../assets/juegos/ahorcado/hombre/ahorcado{{intentosRestantes}}.png'>
+
       <button type="button" id="btn-pista" (click)="togglePista()">¿Una pista?</button>
       <input id="inputCampo" type="text" [value]="mostrarPista ? pista : ''" readonly>
 
@@ -43,3 +45,4 @@
       <button class="btn btn-secondary mt-4" (click)="iniciarJuego()">Reiniciar Juego</button>
   </div>
 </div>
+<app-chat></app-chat>

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, addDoc, collectionData, DocumentData } from '@angular/fire/firestore';
 import { ChatMsj } from '../../interfaces/chat-msj';
-import { BehaviorSubject, Observable, map } from 'rxjs';
-import { orderBy, query } from 'firebase/firestore';
+import { Observable } from 'rxjs';
+import { limit, orderBy, query } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -17,15 +17,13 @@ export class ChatService {
     return addDoc(chatCollection, chatMsj);
   }
 
-  
   getMsjChat(): Observable<ChatMsj[]>{
     const chatCollection = collection(this.firestore, 'chat');
-    const q = query(chatCollection, orderBy('fecha'));
+    const q = query(chatCollection, orderBy('fecha'), limit(20));
 
     return collectionData(q) as Observable<ChatMsj[]>;
   }
   
-
   /* 
   getMsjChat(): Observable<ChatMsj[]> {
     const chatCollection = collection(this.firestore, 'chat');
@@ -43,7 +41,6 @@ export class ChatService {
     );
   }
   */
-
 
   /*
   getMsjChat(): Observable<ChatMsj[]> {

@@ -1,37 +1,40 @@
 <app-navbar></app-navbar>
 <div id="game-container">
-    <div *ngIf="!juegoIniciado" class="start-button-container">
-      <div id="wrapper">
-        <a (click)="iniciarJuego()" class="btn-empezar">
-          <div class="dots-container">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-          </div>
-          <span>EMPEZAR</span>
-        </a>
-      </div>
-    </div>
-  
-    <div *ngIf="juegoIniciado">
-        <h1>Mayor o Menor</h1>
-        <p class="intentosRacha">Racha actual: {{ racha }}</p>
-
-        <img class="carta" [src]="getImagenCarta(numeroActual)" alt="Carta">
-
-        <p id="numero-actual">{{ numeroActual }}</p>
-        <div class="button-container">
-          <button class="btn-adivinar" (click)="adivinarMayor()">Mayor</button>
-          <button class="btn-adivinar" (click)="adivinarMenor()">Menor</button>
+  <div *ngIf="!juegoIniciado" class="start-button-container">
+    <div id="wrapper">
+      <a (click)="iniciarJuego()" class="btn-empezar">
+        <div class="dots-container">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
         </div>
-        
-        <p class="intentosRacha">Intentos: {{ intentos }}</p>
-        
-        <div class="mt-4 mb-4">
-            <span *ngIf="primerCarta" [ngClass]="{'resultado-correcto': resultadoCorrecto, 'resultado-incorrecto': !resultadoCorrecto}">
-                {{ resultadoCorrecto ? '¡Correcto!' : 'Incorrecto' }}
-            </span>
-        </div>
+        <span>EMPEZAR</span>
+      </a>
     </div>
   </div>
+
+  <div *ngIf="juegoIniciado">
+    <h1>Mayor o Menor</h1>
+    <p class="intentosRacha">Racha actual: <b>{{ racha }}</b></p>
+
+    <img class="carta" [src]="getImagenCarta(numeroActual)" alt="Carta">
+
+    <p id="numero-actual">{{ numeroActual }}</p>
+    <div class="button-container">
+      <button class="btn-adivinar" (click)="adivinarMayor()">Mayor</button>
+      <button class="btn-adivinar" (click)="adivinarMenor()">Menor</button>
+    </div>
+
+    <p class="intentosRacha">Intentos: {{ intentos }}</p>
+
+    <div class="mt-4 mb-4">
+      <span *ngIf="primerCarta"
+        [ngClass]="{'resultado-correcto': resultadoCorrecto, 'resultado-incorrecto': !resultadoCorrecto}">
+        {{ resultadoCorrecto ? '¡Correcto!' : 'Incorrecto' }}
+      </span>
+    </div>
+  </div>
+</div>
+<app-tabla-puntajes [listaPuntajes]="puntajes"></app-tabla-puntajes>
+<app-chat></app-chat>

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AcercadeComponent } from './acercade.component';
 import { NavbarModule } from '../navbar/navbar.module';
 import { AcercadeRoutingModule } from './acercade-routing.module';
+import { ChatModule } from '../chat/chat.module';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { AcercadeRoutingModule } from './acercade-routing.module';
   imports: [
     CommonModule,
     AcercadeRoutingModule,
-    NavbarModule
+    NavbarModule,
+    ChatModule
   ],
   exports: [
     AcercadeComponent

@@ -1,0 +1,16 @@
+<table class="score-table">
+    <thead>
+        <tr>
+            <th>Nombre del Jugador</th>
+            <th>Puntaje</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let puntaje of listaPuntajes">
+        <tr>
+            <td>{{puntaje.user}}</td>
+            <td>{{puntaje.puntaje}}</td>
+            <td>{{puntaje.fecha}}</td>
+        </tr>
+    </tbody>
+</table>

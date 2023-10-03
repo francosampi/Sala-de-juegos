@@ -1,37 +1,40 @@
 <body id="background">
     <app-navbar></app-navbar>
-    <div class="container">
-        <div class="d-flex flex-row justify-content-center mt-5">
-            <div class="card text-center" style="width: 18rem;">
-                <img>
+    <div class="container d-flex align-items-center justify-content-center mt-5">
+        <div class="container col-md-3">
+            <div class="card text-center" style="width: 20rem;">
                 <div class="card-body">
                     <h5 class="card-title">Ahorcado
                         <img class="juego-icono" src="../../../../assets/juegos/ahorcado/iconos/ahorcado-icono.png">
                     </h5>
-                    <p class="card-text">Se te dará una <b>palabra</b>, intenta adivinarla letra por letra... cuidado con gastar tus intentos!
-                        
+                    <p class="card-text">Se te dará una <b>palabra</b>, intenta adivinarla letra por letra... cuidado
+                        con gastar tus intentos!
                     </p>
-                    <a routerLink="/juegos/ahorcado" class="btn btn-primary juego-botonjugar">JUGAR</a>
+                    <button routerLink="/juegos/ahorcado" class="btn btn-primary juego-botonjugar">JUGAR</button>
                 </div>
             </div>
-
-            <div class="card text-center" style="width: 18rem;">
-                <img>
+        </div>
+        <div class="container col-md-3">
+            <div class="card text-center" style="width: 20rem;">
                 <div class="card-body">
                     <h5 class="card-title">Mayor o menor
-                        <img class="juego-icono" src="../../../../assets/juegos/mayor-o-menor/iconos/mayor-o-menor_icono.png">
+                        <img class="juego-icono"
+                            src="../../../../assets/juegos/mayor-o-menor/iconos/mayor-o-menor_icono.png">
                     </h5>
-                    <p class="card-text">Se te dará una <b>carta</b>, intenta adivinar si la siguiente será mayor o menor!</p>
-                    <a routerLink="/juegos/mayor-o-menor" class="btn btn-primary juego-botonjugar">JUGAR</a>
+                    <p class="card-text">
+                        Se te dará una <b>carta</b>, intenta adivinar si la siguiente será mayor o
+                        menor!
+                    </p>
+                    <button routerLink="/juegos/mayor-o-menor" class="btn btn-primary juego-botonjugar">JUGAR</button>
                 </div>
             </div>
-
-            <div class="card text-center" style="width: 18rem;">
-                <img>
+        </div>
+        <div class="container col-md-3">
+            <div class="card text-center" style="width: 20rem;">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Descripción del juego.</p>
-                    <a routerLink="/juegos/" class="btn btn-primary juego-botonjugar">JUGAR</a>
+                    <h5 class="card-title">Próximamente...</h5>
+                    <p class="card-text"></p>
+                    <button disabled routerLink="/juegos/" class="btn btn-primary juego-botonjugar">JUGAR</button>
                 </div>
             </div>
         </div>

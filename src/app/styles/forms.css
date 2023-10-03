@@ -5,15 +5,7 @@
 body {
     background-color: lightgreen;
 }
-header {
-    background-color: black;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 15vh;
-    box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
-}
+
 h1 {
     letter-spacing: 1.5vw;
     font-family: 'system-ui';

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RegistrarComponent } from './registrar.component';
 import { FormsModule } from '@angular/forms';
 import { RegistrarRoutingModule } from './registrar-routing.module';
+import { NavbarModule } from '../navbar/navbar.module';
 
 
 
@@ -13,7 +14,8 @@ import { RegistrarRoutingModule } from './registrar-routing.module';
   imports: [
     CommonModule,
     FormsModule,
-    RegistrarRoutingModule
+    RegistrarRoutingModule,
+    NavbarModule
   ],
   exports: [
     RegistrarComponent
