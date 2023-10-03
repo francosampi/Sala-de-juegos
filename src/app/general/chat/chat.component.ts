@@ -23,6 +23,19 @@ export class ChatComponent implements OnInit {
 
     this.chatService.getMsjChat().subscribe((listaMensajes)=>{
       this.mensajes=listaMensajes;
+
+      listaMensajes.sort((a, b) => {
+        const dateA = a.fecha;
+        const dateB = b.fecha;
+      
+        if (dateB < dateA) {
+          return 1;
+        } else if (dateB > dateA) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
     });
   }
 
@@ -38,16 +51,19 @@ export class ChatComponent implements OnInit {
     }
 
     this.chatService.addMsjChat(nuevoMensaje).then(()=>{
-      const enviarMensajeSnd = new Audio();
-      enviarMensajeSnd.src='../../../assets/chat/sonidos/msj-enviado.wav'
-      enviarMensajeSnd.play();
-  
       this.mensaje='';
+      this.emitirSonido('../../../assets/chat/sonidos/msj-enviado.wav');
   
       setTimeout(() => {
         this.scrollUltimoMensaje();
       }, 20);
     });
+  }
+
+  emitirSonido(src:string){
+    const enviarMensajeSnd = new Audio();
+    enviarMensajeSnd.src=src;
+    enviarMensajeSnd.play();
   }
 
   mostrarChatYScrollear(){

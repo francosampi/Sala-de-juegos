@@ -45,14 +45,14 @@ export class PuntajeService {
 
   getPuntajesMayorOMenor(): Observable<Puntaje[]> {
     const chatCollection = collection(this.firestore, 'puntajes-mom');
-    const q = query(chatCollection, orderBy('puntaje', 'desc'), limit(10));
+    const q = query(chatCollection, orderBy('puntaje', 'desc'), limit(5));
 
     return collectionData(q) as Observable<Puntaje[]>;
   }
 
   getPuntajesAhorcado(): Observable<Puntaje[]> {
     const chatCollection = collection(this.firestore, 'puntajes-ahorcado');
-    const q = query(chatCollection, orderBy('puntaje', 'desc'), limit(10));
+    const q = query(chatCollection, orderBy('puntaje', 'desc'), limit(5));
 
     return collectionData(q) as Observable<Puntaje[]>;
   }

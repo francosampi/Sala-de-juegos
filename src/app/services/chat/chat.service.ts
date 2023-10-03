@@ -9,7 +9,7 @@ import { limit, orderBy, query } from 'firebase/firestore';
 })
 export class ChatService {
 
-  constructor(private firestore: Firestore) { 
+  constructor(private firestore: Firestore) {
   }
 
   addMsjChat(chatMsj: ChatMsj) {
@@ -17,46 +17,10 @@ export class ChatService {
     return addDoc(chatCollection, chatMsj);
   }
 
-  getMsjChat(): Observable<ChatMsj[]>{
+  getMsjChat(): Observable<ChatMsj[]> {
     const chatCollection = collection(this.firestore, 'chat');
-    const q = query(chatCollection, orderBy('fecha'), limit(20));
+    const q = query(chatCollection, limit(20), orderBy('fecha', 'desc'));
 
     return collectionData(q) as Observable<ChatMsj[]>;
   }
-  
-  /* 
-  getMsjChat(): Observable<ChatMsj[]> {
-    const chatCollection = collection(this.firestore, 'chat');
-    const q = query(chatCollection, orderBy('fecha'));
-
-    return from(getDocs(q)).pipe(
-      map((querySnapshot) => {
-        const chatMsjArray: ChatMsj[] = [];
-        querySnapshot.forEach((doc) => {
-          const chatMsjData = doc.data() as ChatMsj;
-          chatMsjArray.push(chatMsjData);
-        });
-        return chatMsjArray;
-      })
-    );
-  }
-  */
-
-  /*
-  getMsjChat(): Observable<ChatMsj[]> {
-    const chatCollection = collection(this.firestore, 'chat');
-    const q = query(chatCollection, orderBy('fecha'));
-
-    return from(getDocs(q)).pipe(
-      map((querySnapshot) => {
-        const chatMsjArray: ChatMsj[] = [];
-        querySnapshot.forEach((doc) => {
-          const chatMsjData = doc.data() as ChatMsj;
-          chatMsjArray.push(chatMsjData);
-        });
-        return chatMsjArray;
-      })
-    );
-  }
-  */
 }

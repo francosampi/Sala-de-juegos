@@ -1,21 +1,21 @@
-<app-navbar></app-navbar>
-<header>
-</header>
-<form id="login_form" class="form_class">
-    <div class="form_div">
-        <label>Email:</label>
-        <input class="field_class" name="email" type="text" placeholder="Ingresa su usuario" autofocus [(ngModel)]="email">
-        <label>Contraseña:</label>
-        <input id="pass" class="field_class" name="password" type="password" placeholder="Ingresa su contraseña" [(ngModel)]="password">
-        <button class="submit_class" form="login_form" (click)="entrar(this.email, this.password)">Entrar</button>
-    </div>
-    <div class="info_div">
-        <p>¿NO TIENE UNA CUENTA REGISTRADA?</p>
-        <button routerLink="/registrar" class="redirect_class">Registrarse</button>
-        <label>{{this.errorMessage}}</label>
-    </div>
-    <div class="info_div">
-        <p>ACCEDE RÁPIDAMENTE</p>
-        <button class="submit_class" form="login_form" (click)="entrar('invitado@hotmail.com', '123456')">Acceso rápido</button>
-    </div>
-</form>
+<body class="bg">
+    <app-navbar></app-navbar>
+    <form id="login_form" class="form_class">
+        <div class="form_div">
+            <label class="field_text">Email:</label>
+            <input class="field_class" name="email" type="text" placeholder="Ingresa su usuario" autofocus [(ngModel)]="email">
+            <label class="field_text">Contraseña:</label>
+            <input id="pass" class="field_class" name="password" type="password" placeholder="Ingresa su contraseña" [(ngModel)]="password">
+            <button class="submit_class" form="login_form" (click)="entrar(this.email, this.password)">Entrar</button>
+        </div>
+        <div class="info_div">
+            <p  class="field_text">¿NO TIENE UNA CUENTA REGISTRADA?</p>
+            <button routerLink="/registrar" class="redirect_class">Registrarse</button>
+            <label>{{this.errorMessage}}</label>
+        </div>
+        <div class="info_div">
+            <p  class="field_text">ACCEDE COMO <b>INVITADO</b></p>
+            <button class="submit_class" form="login_form" (click)="entrar('invitado@hotmail.com', '123456')">Acceso rápido</button>
+        </div>
+    </form>
+</body>

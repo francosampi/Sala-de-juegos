@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'rainyhearts';
-    src: url('../../../assets/fonts/rainyhearts.ttf') format('truetype')
+    font-family: 'pixeloidSans';
+    src: url('../../../assets/fonts/PixeloidSans.ttf') format('truetype')
 }
 
 .chat-container {
@@ -9,15 +9,35 @@
     bottom: 0.5rem;
     width: 500px;
     height: 80vh;
+    border-radius: 2px;
+}
+
+.chat-oculto-header{
+    font-family: 'pixeloidSans', sans-serif;
+    font-size: 24px;
+    position: fixed;
+    padding-left: 15px;
+    left: 0.5rem;
+    bottom: 0.5rem;
+    width: 500px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background: linear-gradient(to bottom, rgb(60, 0, 138), rgb(83, 0, 190));
+    color: white;
+    border-radius: 2px;
+    border: 1px solid #fda403;
 }
 
 .card-header {
-    font-family: 'rainyhearts', sans-serif;
-    font-size: 28px;
+    font-family: 'pixeloidSans', sans-serif;
+    font-size: 18px;
     background: linear-gradient(to bottom, rgb(60, 0, 138), rgb(83, 0, 190));
     color: white;
-    font-weight: 700;
     cursor: pointer;
+    border-radius: 2px;
+    border: 1px solid #fda403;
 }
 
 .card-body {
@@ -32,37 +52,38 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.9);
     z-index: 1;
 }
 
 .form-control{
-    font-family: 'rainyhearts', sans-serif;
+    font-family: 'pixeloidSans', sans-serif;
     font-size: 16px;
-    color: black;
+    background-color: rgb(23, 11, 58);
+    margin-right: 10px;
+    color: rgb(177, 255, 174);
+}
+
+::placeholder{
+    color: rgb(255, 255, 255);
 }
 
 .card-footer{
-    background-color: rgb(202, 108, 0);
+    background-color: rgb(255, 248, 188);
 }
 
-.chat-oculto-header{
-    font-family: 'rainyhearts', sans-serif;
-    font-size: 28px;
-    position: fixed;
-    padding-left: 15px;
-    left: 0.5rem;
-    bottom: 0.5rem;
-    width: 500px;
-    height: 40px;
+.chat-icono-header-container{
+    background-color: white;
+}
+
+.chat-icono-header{
     display: flex;
+    justify-content: center;
     align-items: center;
-    cursor: pointer;
-    background: linear-gradient(to bottom, rgb(60, 0, 138), rgb(83, 0, 190));
-    color: white;
-    font-weight: 700;
-    border-radius: 15px;
-    border: 1px solid #fda403;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    color: wheat;
 }
 
 .chat-btn-header{
@@ -81,6 +102,16 @@
     transform: rotate(180deg);
 }
 
+.input-group-text{
+    background-color: rgb(167, 255, 140);
+    border-width: 1px;
+    border-color: black;
+}
+
+.input-img-enviar{
+    width: 40px;
+}
+
 .input-img-enviar:active {
     transform: scale(0.8);
 }
@@ -89,32 +120,53 @@
     display: block;
     float: right;
     background: linear-gradient(to bottom, #c200c9, #86008b);
-    font-family: 'rainyhearts', sans-serif;
-    font-size: 20px;
+    font-family: 'pixeloidSans', sans-serif;
     color: white;
     min-width: 50.01%;
-    border-radius: 15px;
+    border-radius: 4px;
     text-align: left;
-    border: 1px solid #f971fd;
+    border: 1px solid blanchedalmond;
 }
 
 .msj-recibido {
     display: block;
     float: left;
     background: linear-gradient(to bottom, #0046c9, #00318b);
-    font-family: 'rainyhearts', sans-serif;
-    font-size: 20px;
+    font-family: 'pixeloidSans', sans-serif;
     color: white;
     min-width: 50.01%;
-    border-radius: 15px;
+    border-radius: 4px;
     text-align: left;
-    border: 1px solid #6098ff;
+    border: 1px solid blanchedalmond;
 }
 
 .msj-fecha {
     font-size: smaller;
-    color: rgb(199, 199, 199);
+    color: rgb(216, 255, 190);
     float: right;
+}
+
+.msj-triangulo{
+    position: relative;
+    width: 0; 
+    height: 0;
+    bottom: -28px;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 10px solid rgb(255, 255, 255);
+}
+
+.msj-triangulo-enviado{
+    float: right;
+    left: 145px;
+}
+
+.msj-triangulo-recibido{
+    float: left;
+}
+
+.form-control{
+    font-size: 24px;
 }
 
 #mensajes-container {
@@ -137,9 +189,8 @@
 }
 
 #mensajes-container::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, rgb(255, 238, 0), rgb(190, 171, 0));
+    background: linear-gradient(to bottom, rgb(255, 238, 0), rgb(255, 238, 86));
     border-radius: 5px;
-
 }
 
 #mensajes-container::-webkit-scrollbar-thumb:hover {

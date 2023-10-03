@@ -2,7 +2,7 @@
   <nav>
     <a routerLink="/">HOME</a>
     <a (click)="irAJuegosHandler()">JUEGOS</a>
-    <a routerLink="/acercade">ACERCA DE</a>
+    <a routerLink="/acercade">ALUMNO</a>
     <a *ngIf="!usuarioLogeado" routerLink="/login">ENTRAR</a>
     <a *ngIf="usuarioLogeado" (click)="salir()">SALIR</a>
     <div id="indicator"></div>

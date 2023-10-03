@@ -9,10 +9,6 @@ body {
   background-image: url('../../../assets/home/bienvenido-background.jpg');
   background-size: cover;
   background-position: center;
-}
-
-.dark-background {
-  background-color: #000;
   position: fixed;
   top: 0;
   left: 0;
@@ -60,4 +56,9 @@ p {
   font-size: 2rem;
   margin: 0;
   margin-top: 1rem;
+  color: rgb(210, 97, 255);
+}
+
+span{
+  color: rgb(255, 243, 174);
 }

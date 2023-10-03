@@ -1,48 +1,44 @@
 <app-navbar></app-navbar>
 <div id="game-container">
-    <div *ngIf="!juegoIniciado" class="start-button-container">
-      <div id="wrapper">
-        <a (click)="iniciarJuego()" class="btn-empezar">
-          <div class="dots-container">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-          </div>
-          <span>EMPEZAR</span>
-        </a>
-      </div>
+  <div *ngIf="!juegoIniciado" class="start-button-container">
+    <div id="wrapper">
+      <a (click)="iniciarJuego()" class="btn-empezar">
+        <div class="dots-container">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <span>EMPEZAR</span>
+      </a>
     </div>
-
-    <div *ngIf="juegoIniciado">
-      <h1>Juego del Ahorcado</h1>
-      <p class="intentosRacha">Intentos restantes: <b>{{intentosRestantes}}</b></p>
-
-      <img id="hombre-ahorcado" src='../../../../assets/juegos/ahorcado/hombre/ahorcado{{intentosRestantes}}.png'>
-
-      <button type="button" id="btn-pista" (click)="togglePista()">¿Una pista?</button>
-      <input id="inputCampo" type="text" [value]="mostrarPista ? pista : ''" readonly>
-
-      <p class="letra-adivinanza">
-        <ng-container *ngFor="let letra of palabraAAdivinar.split(''); let i = index">
-          <span *ngIf="letrasAdivinadas.includes(letra); else placeholder"> {{ letra }} </span>
-          <ng-template #placeholder class="letra-adivinanza-placeholder"> _ </ng-template>
-        </ng-container>
-      </p>
-      
-      <div id="teclado" class="container">
-          <button
-          *ngFor="let letra of 'abcdefghijklmnopqrstuvwxyz'.split(''); let i = index"
-          class="btn-letra"
-          (click)="manejarAdivinanza(letra)"
-          [disabled]="letrasPresionadas.has(letra)"
-          [style.background-color]="botonesColores[letra] ? botonesColores[letra] : '#C4DAE4'"
-          >
-            {{letra}}
-          </button>
-      </div>
-      <button class="btn btn-secondary mt-4" (click)="iniciarJuego()">Reiniciar Juego</button>
   </div>
-  <app-tabla-puntajes [listaPuntajes]="puntajes"></app-tabla-puntajes>
+
+  <div *ngIf="juegoIniciado">
+    <h1>Juego del Ahorcado</h1>
+    <p class="intentosRacha">Intentos restantes: <b>{{intentosRestantes}}</b></p>
+
+    <img id="hombre-ahorcado" src='../../../../assets/juegos/ahorcado/hombre/ahorcado{{intentosRestantes}}.png'>
+
+    <button type="button" id="btn-pista" (click)="togglePista()">¿Una pista?</button>
+    <input id="inputCampo" type="text" [value]="mostrarPista ? pista : ''" readonly>
+
+    <p class="letra-adivinanza">
+      <ng-container *ngFor="let letra of palabraAAdivinar.split(''); let i = index">
+        <span *ngIf="letrasAdivinadas.includes(letra); else placeholder"> {{ letra }} </span>
+        <ng-template #placeholder class="letra-adivinanza-placeholder"> _ </ng-template>
+      </ng-container>
+    </p>
+
+    <div id="teclado" class="container">
+      <button *ngFor="let letra of 'abcdefghijklmnopqrstuvwxyz'.split(''); let i = index" class="btn-letra"
+        (click)="manejarAdivinanza(letra)" [disabled]="letrasPresionadas.has(letra)"
+        [style.background-color]="botonesColores[letra] ? botonesColores[letra] : '#C4DAE4'">
+        {{letra}}
+      </button>
+    </div>
+    <button class="btn btn-secondary mt-4" (click)="iniciarJuego()">Reiniciar Juego</button>
+    <app-tabla-puntajes [listaPuntajes]="puntajes"></app-tabla-puntajes>
+  </div>
 </div>
 <app-chat></app-chat>
