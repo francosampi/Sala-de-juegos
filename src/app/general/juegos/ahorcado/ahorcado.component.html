@@ -1,6 +1,5 @@
 <app-navbar></app-navbar>
 <div id="game-container">
-
     <div *ngIf="!juegoIniciado" class="start-button-container">
       <div id="wrapper">
         <a (click)="iniciarJuego()" class="btn-empezar">
@@ -17,7 +16,7 @@
 
     <div *ngIf="juegoIniciado">
       <h1>Juego del Ahorcado</h1>
-      <p class="intentosRacha">Intentos restantes: {{ intentosRestantes }}</p>
+      <p class="intentosRacha">Intentos restantes: <b>{{intentosRestantes}}</b></p>
 
       <img id="hombre-ahorcado" src='../../../../assets/juegos/ahorcado/hombre/ahorcado{{intentosRestantes}}.png'>
 
@@ -44,5 +43,6 @@
       </div>
       <button class="btn btn-secondary mt-4" (click)="iniciarJuego()">Reiniciar Juego</button>
   </div>
+  <app-tabla-puntajes [listaPuntajes]="puntajes"></app-tabla-puntajes>
 </div>
 <app-chat></app-chat>

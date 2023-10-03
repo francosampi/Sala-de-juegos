@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'rainyhearts';
+  src: url('../../../assets/fonts/rainyhearts.ttf') format('truetype')
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -44,12 +49,14 @@ body {
 }
 
 h1 {
+  font-family: 'rainyhearts', sans-serif;
   font-size: 4rem;
   margin: 0;
   text-transform: uppercase;
 }
 
 p {
+  font-family: 'rainyhearts', sans-serif;
   font-size: 2rem;
   margin: 0;
   margin-top: 1rem;

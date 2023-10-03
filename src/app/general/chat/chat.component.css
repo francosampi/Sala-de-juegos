@@ -7,12 +7,14 @@
     position: fixed;
     left: 0.5rem;
     bottom: 0.5rem;
-    width: 400px;
-    height: 800px;
+    width: 500px;
+    height: 80vh;
 }
 
 .card-header {
-    background-color: rgb(60, 0, 138);
+    font-family: 'rainyhearts', sans-serif;
+    font-size: 28px;
+    background: linear-gradient(to bottom, rgb(60, 0, 138), rgb(83, 0, 190));
     color: white;
     font-weight: 700;
     cursor: pointer;
@@ -45,16 +47,18 @@
 }
 
 .chat-oculto-header{
+    font-family: 'rainyhearts', sans-serif;
+    font-size: 28px;
     position: fixed;
     padding-left: 15px;
     left: 0.5rem;
     bottom: 0.5rem;
-    width: 400px;
+    width: 500px;
     height: 40px;
     display: flex;
     align-items: center;
     cursor: pointer;
-    background-color: rgb(60, 0, 138);
+    background: linear-gradient(to bottom, rgb(60, 0, 138), rgb(83, 0, 190));
     color: white;
     font-weight: 700;
     border-radius: 15px;
@@ -84,27 +88,27 @@
 .msj-enviado {
     display: block;
     float: right;
-    background-color: #c51350;
+    background: linear-gradient(to bottom, #c200c9, #86008b);
     font-family: 'rainyhearts', sans-serif;
     font-size: 20px;
     color: white;
     min-width: 50.01%;
     border-radius: 15px;
     text-align: left;
-    border: 1px solid #fda403;
+    border: 1px solid #f971fd;
 }
 
 .msj-recibido {
     display: block;
     float: left;
-    background-color: #0046c9;
+    background: linear-gradient(to bottom, #0046c9, #00318b);
     font-family: 'rainyhearts', sans-serif;
     font-size: 20px;
     color: white;
     min-width: 50.01%;
     border-radius: 15px;
     text-align: left;
-    border: 1px solid #fda403;
+    border: 1px solid #6098ff;
 }
 
 .msj-fecha {
@@ -116,7 +120,7 @@
 #mensajes-container {
     overflow: scroll;
     padding: 0.3rem;
-    height: 700px;
+    height: 95%;
     overflow-y: auto;
 }
 
@@ -133,7 +137,7 @@
 }
 
 #mensajes-container::-webkit-scrollbar-thumb {
-    background: #d3b300;
+    background: linear-gradient(to bottom, rgb(255, 238, 0), rgb(190, 171, 0));
     border-radius: 5px;
 
 }

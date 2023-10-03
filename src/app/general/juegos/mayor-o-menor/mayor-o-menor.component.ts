@@ -28,7 +28,7 @@ export class MayorOMenorComponent implements OnInit {
   ngOnInit(): void {
     this.usuarioLogeado = this.authService.getUser();
 
-    this.puntajeService.getPuntajes().subscribe((listaPuntajes) => {
+    this.puntajeService.getPuntajesMayorOMenor().subscribe((listaPuntajes) => {
       this.puntajes = listaPuntajes;
     });
   }
@@ -108,7 +108,7 @@ export class MayorOMenorComponent implements OnInit {
       fecha: this.zonaHorariaService.getHoraArg()
     }
 
-    this.puntajeService.addPuntaje(miPuntaje).then(() => {
+    this.puntajeService.addPuntajeMayorOMenor(miPuntaje).then(() => {
       this.iniciarJuego();
       this.resultadoCorrecto = false;
     }).catch(() => {

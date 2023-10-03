@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Puntaje } from 'src/app/interfaces/puntaje';
+import { AuthService } from 'src/app/services/authentication/auth.service';
+import { PuntajeService } from 'src/app/services/puntaje/puntaje.service';
+import { ZonahorariaService } from 'src/app/services/zonahoraria/zonahoraria.service';
 import Swal from 'sweetalert2';
 
 
@@ -9,6 +13,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./ahorcado.component.css', './ahorcado-btn-letra.css', '../juegos-btn-empezar.css']
 })
 export class AhorcadoComponent implements OnInit {
+  usuarioLogeado:any;
   juegoIniciado: boolean = false;
   palabraAAdivinar: string='';
   pista: string='';
@@ -18,6 +23,7 @@ export class AhorcadoComponent implements OnInit {
   botonesColores: { [key: string]: string } = {};
   mostrarPista: boolean=false;
   letraElegidaSinAcentos: string='';
+  puntajes: Puntaje[] = [];
   palabrasConPistas = [
     { palabra: 'perro', pista: 'Animal doméstico' },
     { palabra: 'gato', pista: 'Animal doméstico' },
@@ -241,7 +247,7 @@ export class AhorcadoComponent implements OnInit {
     { palabra: 'litosfera', pista: 'Capa de roca' },
   ];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private authService: AuthService, private zonaHorariaService: ZonahorariaService, private puntajeService: PuntajeService) { }
 
   ngOnInit(): void {
     const palabrasSinTildes = this.palabrasConPistas.map((item) => ({
@@ -262,6 +268,12 @@ export class AhorcadoComponent implements OnInit {
     this.mostrarPista=false;
 
     console.log(this.palabraAAdivinar);
+
+    this.usuarioLogeado = this.authService.getUser();
+
+    this.puntajeService.getPuntajesAhorcado().subscribe((listaPuntajes) => {
+      this.puntajes = listaPuntajes;
+    });
   }
 
   elegirPalabra(): void{
@@ -286,7 +298,7 @@ export class AhorcadoComponent implements OnInit {
               icon: 'success',
               title: '¡Enhorabuena!',
               html:
-              'La palabra era <b>'+this.palabraAAdivinar+'</b>...',
+              'La palabra era <b>'+this.palabraAAdivinar+'</b>...<br>¡Acumulas <b>'+this.intentosRestantes+'</b> puntos!',
               showCancelButton:true,
               showDenyButton: true,
               confirmButtonText: '¡Otra palabra!',
@@ -299,6 +311,17 @@ export class AhorcadoComponent implements OnInit {
                 this.router.navigate(['/juegos']);
               }
             });
+
+            const nombreUsuario = this.authService.getNombreUser();
+
+            const miPuntaje: Puntaje = {
+              user: this.authService.getNombreUser(),
+              categoria: 'ahorcado',
+              puntaje: this.intentosRestantes,
+              fecha: this.zonaHorariaService.getHoraArg()
+            }
+
+            this.puntajeService.updatePuntajeAhorcado(nombreUsuario as string, miPuntaje);
           }
 
         }

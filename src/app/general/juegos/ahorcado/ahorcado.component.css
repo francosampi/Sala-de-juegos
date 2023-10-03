@@ -33,14 +33,14 @@ h1 {
 
 .letra-adivinanza {
     font-family: 'learners', sans-serif;
-    font-size: 36px;
+    font-size: 42px;
     text-transform: uppercase;
     margin-bottom: 20px;
 }
 
 .letra-adivinanza-placeholder {
     font-family: 'learners', sans-serif;
-    font-size: 36px;
+    font-size: 42px;
 }
 
 #hombre-ahorcado{

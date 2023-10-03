@@ -1,5 +1,5 @@
 .score-table {
-    position: fixed;
+    position: absolute;
     top:15%;
     right: 0.5rem;
     width: 20%;
