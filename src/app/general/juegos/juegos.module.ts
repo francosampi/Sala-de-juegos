@@ -7,6 +7,7 @@ import { MayorOMenorComponent } from './mayor-o-menor/mayor-o-menor.component';
 import { AhorcadoComponent } from './ahorcado/ahorcado.component';
 import { ChatModule } from '../chat/chat.module';
 import { TablaPuntajesComponent } from './tabla-puntajes/tabla-puntajes.component';
+import { PreguntasComponent } from './preguntas/preguntas.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { TablaPuntajesComponent } from './tabla-puntajes/tabla-puntajes.componen
     JuegosComponent,
     MayorOMenorComponent,
     AhorcadoComponent,
-    TablaPuntajesComponent
+    TablaPuntajesComponent,
+    PreguntasComponent
   ],
   imports: [
     CommonModule,

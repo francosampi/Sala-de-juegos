@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
 import { ChatMsj } from 'src/app/interfaces/chat-msj';
 import { AuthService } from 'src/app/services/authentication/auth.service';
 import { ChatService } from 'src/app/services/chat/chat.service';
@@ -12,22 +13,28 @@ import { ZonahorariaService } from 'src/app/services/zonahoraria/zonahoraria.ser
 export class ChatComponent implements OnInit {
 
   usuarioLogeado: any;
-  mensaje:string='';
-  mensajes:ChatMsj[]=[];
-  mostrarChat=false;
+  mensaje: string = '';
+  mensajes: ChatMsj[] = [];
+  mostrarChat = false;
 
-  constructor(private authService: AuthService, private chatService: ChatService, private zonaHorariaService: ZonahorariaService) {}
+  constructor(private auth: Auth, private authService: AuthService, private chatService: ChatService, private zonaHorariaService: ZonahorariaService) { }
 
   ngOnInit(): void {
-    this.usuarioLogeado=this.authService.getUser();
 
-    this.chatService.getMsjChat().subscribe((listaMensajes)=>{
-      this.mensajes=listaMensajes;
+    this.auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.usuarioLogeado = this.authService.getUser();
+        console.log(this.authService.getNombreUser())
+      }
+    });
+
+    this.chatService.getMsjChat().subscribe((listaMensajes) => {
+      this.mensajes = listaMensajes;
 
       listaMensajes.sort((a, b) => {
         const dateA = a.fecha;
         const dateB = b.fecha;
-      
+
         if (dateB < dateA) {
           return 1;
         } else if (dateB > dateA) {
@@ -39,36 +46,36 @@ export class ChatComponent implements OnInit {
     });
   }
 
-  enviarMensaje(){
+  enviarMensaje() {
     const nombreUser = this.authService.getNombreUser();
     const fechaEnvio = this.zonaHorariaService.getHoraArg();
 
-    let nuevoMensaje={
+    let nuevoMensaje = {
       id: this.usuarioLogeado.uid,
       user: nombreUser,
       texto: this.mensaje,
       fecha: fechaEnvio
     }
 
-    this.chatService.addMsjChat(nuevoMensaje).then(()=>{
-      this.mensaje='';
+    this.chatService.addMsjChat(nuevoMensaje).then(() => {
+      this.mensaje = '';
       this.emitirSonido('../../../assets/chat/sonidos/msj-enviado.wav');
-  
+
       setTimeout(() => {
         this.scrollUltimoMensaje();
       }, 20);
     });
   }
 
-  emitirSonido(src:string){
+  emitirSonido(src: string) {
     const enviarMensajeSnd = new Audio();
-    enviarMensajeSnd.src=src;
+    enviarMensajeSnd.src = src;
     enviarMensajeSnd.play();
   }
 
-  mostrarChatYScrollear(){
-    this.mostrarChat=true;
-    
+  mostrarChatYScrollear() {
+    this.mostrarChat = true;
+
     setTimeout(() => {
       this.scrollUltimoMensaje();
     }, 20);
@@ -77,8 +84,7 @@ export class ChatComponent implements OnInit {
   scrollUltimoMensaje() {
     const msjContainer = document.getElementById('mensajes-container');
 
-    if(msjContainer)
-    {
+    if (msjContainer) {
       msjContainer.scrollTop = msjContainer.scrollHeight - msjContainer.clientHeight;
     }
   }

@@ -14,7 +14,7 @@
 
 .chat-oculto-header{
     font-family: 'pixeloidSans', sans-serif;
-    font-size: 24px;
+    font-size: 18px;
     position: fixed;
     padding-left: 15px;
     left: 0.5rem;
@@ -52,24 +52,28 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.85);
     z-index: 1;
 }
 
 .form-control{
     font-family: 'pixeloidSans', sans-serif;
-    font-size: 16px;
-    background-color: rgb(23, 11, 58);
-    margin-right: 10px;
-    color: rgb(177, 255, 174);
+    font-size: 12px;
+    background-color: rgb(255, 255, 240);
+    margin-right: 5px;
+    color: rgb(0, 0, 0);
 }
 
 ::placeholder{
-    color: rgb(255, 255, 255);
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    margin-left: 12px;
 }
 
 .card-footer{
-    background-color: rgb(255, 248, 188);
+    border-width: 2px;
+    border-color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
 }
 
 .chat-icono-header-container{
@@ -99,11 +103,11 @@
 }
 
 .chat-btn-header-ocultar{
-    transform: rotate(180deg);
+    transform: rotate(90deg);
 }
 
 .input-group-text{
-    background-color: rgb(167, 255, 140);
+    background-color: rgb(244, 255, 233);
     border-width: 1px;
     border-color: black;
 }
@@ -166,7 +170,8 @@
 }
 
 .form-control{
-    font-size: 24px;
+    font-size: 18px;
+    border-radius: 25px;
 }
 
 #mensajes-container {

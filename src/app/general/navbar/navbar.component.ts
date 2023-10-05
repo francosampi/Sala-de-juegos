@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
         this.usuarioLogeado = this.authService.getUser();
         this.usuarioNombre = this.authService.getNombreUser();
       }
-    })
+    });
   }
 
   irAJuegosHandler() {

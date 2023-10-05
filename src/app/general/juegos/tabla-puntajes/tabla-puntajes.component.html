@@ -7,8 +7,11 @@
         </tr>
     </thead>
     <tbody *ngFor="let puntaje of listaPuntajes">
-        <tr>
-            <td>{{puntaje.user}}</td>
+        <tr
+        [style.background-color]="puntaje.user==usuarioLogeado ? '#F9FF9F' : 'FFFFFF'"
+        [style.font-weight]="puntaje.user==usuarioLogeado ? 'bold' : 'normal'">
+            <td>
+                {{puntaje.user}}</td>
             <td>{{puntaje.puntaje}}</td>
             <td>{{puntaje.fecha}}</td>
         </tr>
