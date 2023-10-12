@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
 import { ChatMsj } from 'src/app/interfaces/chat-msj';
 import { AuthService } from 'src/app/services/authentication/auth.service';
 import { ChatService } from 'src/app/services/chat/chat.service';
@@ -13,19 +12,17 @@ import { ZonahorariaService } from 'src/app/services/zonahoraria/zonahoraria.ser
 export class ChatComponent implements OnInit {
 
   usuarioLogeado: any;
+  usuarioNombre: string | null = null;
   mensaje: string = '';
   mensajes: ChatMsj[] = [];
   mostrarChat = false;
 
-  constructor(private auth: Auth, private authService: AuthService, private chatService: ChatService, private zonaHorariaService: ZonahorariaService) { }
+  constructor(private authService: AuthService, private chatService: ChatService, private zonaHorariaService: ZonahorariaService) { }
 
   ngOnInit(): void {
-
-    this.auth.onAuthStateChanged((user) => {
-      if (user) {
-        this.usuarioLogeado = this.authService.getUser();
-        console.log(this.authService.getNombreUser())
-      }
+    this.authService.usuarioLogeado.subscribe((user)=>{
+      this.usuarioLogeado = user;
+      this.usuarioNombre = this.authService.nombreUsuario;
     });
 
     this.chatService.getMsjChat().subscribe((listaMensajes) => {
@@ -47,12 +44,11 @@ export class ChatComponent implements OnInit {
   }
 
   enviarMensaje() {
-    const nombreUser = this.authService.getNombreUser();
     const fechaEnvio = this.zonaHorariaService.getHoraArg();
 
     let nuevoMensaje = {
       id: this.usuarioLogeado.uid,
-      user: nombreUser,
+      user: this.usuarioNombre,
       texto: this.mensaje,
       fecha: fechaEnvio
     }

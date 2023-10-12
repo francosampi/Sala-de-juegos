@@ -1,9 +1,21 @@
+@font-face {
+    font-family: 'learners';
+    src: url('../../../../assets/fonts/Learners.ttf') format('truetype')
+}
+
+#game-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    height: 100vh;
+}
+
 .amarillo {
     background-color: yellow;
 }
 
 .rojo {
-    background-color: red;
+    background-color: rgb(255, 58, 58);
 }
 
 .verde {
@@ -11,7 +23,7 @@
 }
 
 .azul {
-    background-color: rgb(48, 48, 255);
+    background-color: rgb(91, 91, 255);
 }
 
 .entrada {
@@ -57,17 +69,32 @@
     background-color: rgb(116, 41, 255);
 }
 
-.btn-dado{
-    border-radius: 50%;
-    height: 140px;
-    width: 140px;
-    border: 2px solid black;
+.btn-opcion{
+    background-color: rgb(255, 233, 254);
+    border-color: rgb(222, 88, 255);
+    color: black;
+    font-size: larger;
+    font-weight: bold;
 }
 
-.btn-opcion{
-    background-color: black;
-    border-color: white;
-    font-size: medium;
+.btn-dado{
+    border-radius: 15%;
+    height: 140px;
+    width: 140px;
+    font-family: 'learners';
+    font-size: 24px;
+    border: 2px solid black;
+    box-shadow: 5px 5px 8px #2c2c2c;
+}
+
+.btn-dado:active{
+    transform: translate(0em, 0.15em);
+    box-shadow: none;
+}
+
+#contador-vidas{
+    font-family: 'learners';
+    font-size: 32px;
 }
 
 .avisos{

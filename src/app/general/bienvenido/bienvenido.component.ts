@@ -8,18 +8,14 @@ import { AuthService } from 'src/app/services/authentication/auth.service';
 })
 export class BienvenidoComponent implements OnInit{
 
-  currentUser : string | undefined;
-
+  usuarioNombre : string | null = null;
   mostrarBotones: boolean = false;
 
   constructor(private authService: AuthService){}
 
   ngOnInit(): void {
-    const nombreUser = this.authService.getNombreUser();
-
-    if(nombreUser!=undefined)
-    {
-      this.currentUser = nombreUser
-    }
+    this.authService.usuarioLogeado.subscribe(()=>{
+      this.usuarioNombre = this.authService.nombreUsuario;
+    });
   }
 }

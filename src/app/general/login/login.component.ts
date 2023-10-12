@@ -19,7 +19,7 @@ export class LoginComponent {
   ngOnInit() { }
 
   entrar(email: string, password: string) {
-    this.authService.iniciarSesion(email, password).then(()=>{
+    this.authService.iniciarSesion(email, password).then((user)=>{
       this.router.navigate(['/']);
     }).catch(()=>{
       Swal.fire({

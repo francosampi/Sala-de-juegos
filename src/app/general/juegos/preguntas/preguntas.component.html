@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div class="container">
+<div id="game-container">
     <div *ngIf="!juegoIniciado" class="start-button-container">
         <div id="wrapper">
             <a (click)="iniciarJuego()" class="btn-empezar">
@@ -15,34 +15,45 @@
     </div>
 
     <div *ngIf="juegoIniciado">
-        <div class="my-5 justify-content-start row">
-            <div class="col-2">
-                <button type="button" class="btn btn-primary btn-dado" (click)="girarDado()" [disabled]="!canGirarDado">
+        <div class="my-5 justify-content-start align-items-center row">
+            <div class="col-4 row">
+                <button type="button" class="btn btn-primary btn-dado mx-4" (click)="girarDado()" [disabled]="!canGirarDado">
                     <b>
                         TIRAR DADO
                     </b>
                 </button>
+                <button type="button" class="btn btn-secondary btn-dado" (click)="iniciarJuego()" [disabled]="!canGirarDado">
+                    <b>
+                        REINICIAR
+                    </b>
+                </button>
             </div>
-            <div class="col-10 row">
-                <div *ngFor="let color of tablero; let i = index" [ngClass]="color" class="casilla">
-                    <div *ngIf="jugadorPos===i">
-                        <img class="jugador" src="../../../../assets/juegos/preguntas/iconos/preguntas-jugador.png">
+            <div class="col-8">
+                <div class="w-75 row justify-content-start align-items-center">
+                    <div id="contador-vidas" class="mb-5">
+                        <p>VIDAS: <b>{{vidas}}</b></p>
+                        <p>PUNTAJE: <b>{{puntaje}}</b></p>
+                    </div>
+                    <div *ngFor="let color of tablero; let i = index" [ngClass]="color" class="casilla">
+                        <div *ngIf="jugadorPos===i">
+                            <img class="jugador" src="../../../../assets/juegos/preguntas/iconos/preguntas-jugador.png">
+                        </div>
                     </div>
                 </div>
-                <img class="bandera" src="../../../../assets/juegos/preguntas/iconos/preguntas-bandera.png">
             </div>
         </div>
 
-        <div *ngIf="!preguntaMostrada && dadoSacado" class="card avisos align-items-center w-25">
+        <div *ngIf="!preguntaMostrada && dadoSacado" class="card avisos align-items-center">
             <p>
                 ¡Has sacado <b>{{dadoSacado}}</b>!
             </p>
             <p>
                 Categoría: <b [className]="tablero[jugadorPos]">{{categoriaActual.toUpperCase()}}</b>
             </p>
+            <img src="../../../../assets/juegos/preguntas/preguntas-tirar-dados.gif">
         </div>
 
-        <div *ngIf="mostrarMsjCorrecto" class="w-100">
+        <div *ngIf="mostrarMsjCorrecto">
             <b>¡CORRECTO!</b>
             <p>
                 Vuelve a lanzar el dado...
@@ -60,6 +71,7 @@
                 </div>
             </div>
         </div>
+        <app-tabla-puntajes [listaPuntajes]="puntajes"></app-tabla-puntajes>
     </div>
 </div>
 <app-chat></app-chat>

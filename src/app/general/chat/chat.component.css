@@ -9,10 +9,10 @@
     bottom: 0.5rem;
     width: 500px;
     height: 80vh;
-    border-radius: 2px;
+    border: 1px solid #fda403;
 }
 
-.chat-oculto-header{
+.chat-oculto-header {
     font-family: 'pixeloidSans', sans-serif;
     font-size: 18px;
     position: fixed;
@@ -24,9 +24,9 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    background: linear-gradient(to bottom, rgb(60, 0, 138), rgb(83, 0, 190));
-    color: white;
-    border-radius: 2px;
+    background: linear-gradient(to bottom, rgb(60, 0, 138, 0.8), rgb(83, 0, 190, 0.8));
+    color: rgba(255, 255, 255, 0.8);
+    border-radius: 4px;
     border: 1px solid #fda403;
 }
 
@@ -36,8 +36,6 @@
     background: linear-gradient(to bottom, rgb(60, 0, 138), rgb(83, 0, 190));
     color: white;
     cursor: pointer;
-    border-radius: 2px;
-    border: 1px solid #fda403;
 }
 
 .card-body {
@@ -56,7 +54,7 @@
     z-index: 1;
 }
 
-.form-control{
+.form-control {
     font-family: 'pixeloidSans', sans-serif;
     font-size: 12px;
     background-color: rgb(255, 255, 240);
@@ -64,33 +62,31 @@
     color: rgb(0, 0, 0);
 }
 
-::placeholder{
+::placeholder {
     font-size: 18px;
     color: rgb(0, 0, 0);
     margin-left: 12px;
 }
 
-.card-footer{
-    border-width: 2px;
-    border-color: rgb(255, 255, 255);
+.card-footer {
     background-color: rgb(0, 0, 0);
 }
 
-.chat-icono-header-container{
+.chat-icono-header-container {
     background-color: white;
 }
 
-.chat-icono-header{
+.chat-icono-header {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 40px;
     height: 40px;
-    margin-left: 10px;
+    margin-right: 10px;
     color: wheat;
 }
 
-.chat-btn-header{
+.chat-btn-header {
     position: absolute;
     right: 0.5rem;
     top: 0.5rem;
@@ -102,17 +98,22 @@
     cursor: pointer;
 }
 
-.chat-btn-header-ocultar{
+.chat-nombre-usuario {
+    margin-left: 6px;
+    color: rgb(255, 238, 86);
+}
+
+.chat-btn-header-ocultar {
     transform: rotate(90deg);
 }
 
-.input-group-text{
+.input-group-text {
     background-color: rgb(244, 255, 233);
     border-width: 1px;
     border-color: black;
 }
 
-.input-img-enviar{
+.input-img-enviar {
     width: 40px;
 }
 
@@ -150,9 +151,9 @@
     float: right;
 }
 
-.msj-triangulo{
+.msj-triangulo {
     position: relative;
-    width: 0; 
+    width: 0;
     height: 0;
     bottom: -28px;
     border-left: 20px solid transparent;
@@ -160,16 +161,16 @@
     border-top: 10px solid rgb(255, 255, 255);
 }
 
-.msj-triangulo-enviado{
+.msj-triangulo-enviado {
     float: right;
     left: 145px;
 }
 
-.msj-triangulo-recibido{
+.msj-triangulo-recibido {
     float: left;
 }
 
-.form-control{
+.form-control {
     font-size: 18px;
     border-radius: 25px;
 }
@@ -189,7 +190,7 @@
     display: none;
 }
 
-#mensajes-container::-webkit-scrollbar-corner{
+#mensajes-container::-webkit-scrollbar-corner {
     display: none;
 }
 

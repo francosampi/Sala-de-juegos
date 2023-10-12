@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/authentication/auth.service';
 import Swal from 'sweetalert2';
@@ -12,16 +11,14 @@ import Swal from 'sweetalert2';
 export class NavbarComponent implements OnInit {
 
   usuarioLogeado: any;
-  usuarioNombre: string | undefined = '';
+  usuarioNombre: string | null = null;
 
-  constructor(private router: Router, private auth: Auth, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.auth.onAuthStateChanged((user)=>{
-      if(user){
-        this.usuarioLogeado = this.authService.getUser();
-        this.usuarioNombre = this.authService.getNombreUser();
-      }
+    this.authService.usuarioLogeado.subscribe((user)=>{
+      this.usuarioLogeado = user;
+      this.usuarioNombre = this.authService.nombreUsuario;
     });
   }
 

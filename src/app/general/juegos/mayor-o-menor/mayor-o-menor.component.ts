@@ -26,7 +26,7 @@ export class MayorOMenorComponent implements OnInit {
   constructor(private authService: AuthService, private zonaHorariaService: ZonahorariaService, private puntajeService: PuntajeService) { }
 
   ngOnInit(): void {
-    this.usuarioLogeado = this.authService.getUser();
+    this.usuarioLogeado = this.authService.usuarioLogeado;
 
     this.puntajeService.getPuntajesMayorOMenor().subscribe((listaPuntajes) => {
       this.puntajes = listaPuntajes;
@@ -59,6 +59,10 @@ export class MayorOMenorComponent implements OnInit {
   resultadoFueCorrecto() {
     this.resultadoCorrecto = true;
     this.racha++;
+
+    const goodHitSnd = new Audio();
+    goodHitSnd.src = '../../../assets/juegos/sonidos/goodHit.wav'
+    goodHitSnd.play();
   }
 
   resultadoFueIncorrecto() {
@@ -102,7 +106,7 @@ export class MayorOMenorComponent implements OnInit {
 
   subirResultado() {
     const miPuntaje: Puntaje = {
-      user: this.authService.getNombreUser(),
+      user: this.authService.nombreUsuario,
       categoria: 'mayor-o-menor',
       puntaje: this.rachaCarry,
       fecha: this.zonaHorariaService.getHoraArg()

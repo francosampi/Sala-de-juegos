@@ -1,17 +1,31 @@
-.score-table {
-    position: absolute;
-    top:15%;
+@font-face {
+    font-family: 'learners';
+    src: url('../../../../assets/fonts/Learners.ttf') format('truetype')
+}
+
+.tabla-container {
+    position: fixed;
+    top: 15%;
     right: 0.5rem;
-    width: 20%;
-    border-collapse: collapse;
-    border: 1px solid #ccc;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.btn-toggle-ranking{
+    width: 100%;
+}
+
+.score-table {
+    margin-top: 2em;
 }
 
 .score-table th,
 .score-table td {
     padding: 10px;
     text-align: center;
-    border: 1px solid #ccc;
+    border: 2px solid #242424;
+    font-size: large;
+    font-family: 'learners';
 }
 
 .score-table th {
@@ -25,4 +39,9 @@
 
 .score-table tbody tr:hover {
     background-color: #ddd;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
 }

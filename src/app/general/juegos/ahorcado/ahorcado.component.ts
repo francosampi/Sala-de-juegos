@@ -13,16 +13,16 @@ import Swal from 'sweetalert2';
   styleUrls: ['./ahorcado.component.css', './ahorcado-btn-letra.css', '../juegos-btn-empezar.css']
 })
 export class AhorcadoComponent implements OnInit {
-  usuarioLogeado:any;
+  usuarioLogeado: any;
   juegoIniciado: boolean = false;
-  palabraAAdivinar: string='';
-  pista: string='';
+  palabraAAdivinar: string = '';
+  pista: string = '';
   letrasAdivinadas: string[] = [];
   intentosRestantes: number = 6;
   letrasPresionadas: Set<string> = new Set();
   botonesColores: { [key: string]: string } = {};
-  mostrarPista: boolean=false;
-  letraElegidaSinAcentos: string='';
+  mostrarPista: boolean = false;
+  letraElegidaSinAcentos: string = '';
   puntajes: Puntaje[] = [];
   palabrasConPistas = [
     { palabra: 'perro', pista: 'Animal doméstico' },
@@ -247,7 +247,7 @@ export class AhorcadoComponent implements OnInit {
     { palabra: 'litosfera', pista: 'Capa de roca' },
   ];
 
-  constructor(private router: Router,private authService: AuthService, private zonaHorariaService: ZonahorariaService, private puntajeService: PuntajeService) { }
+  constructor(private router: Router, private authService: AuthService, private zonaHorariaService: ZonahorariaService, private puntajeService: PuntajeService) { }
 
   ngOnInit(): void {
     const palabrasSinTildes = this.palabrasConPistas.map((item) => ({
@@ -255,32 +255,32 @@ export class AhorcadoComponent implements OnInit {
       pista: item.pista,
     }));
 
-    this.palabrasConPistas=palabrasSinTildes;
+    this.palabrasConPistas = palabrasSinTildes;
   }
 
   iniciarJuego(): void {
     this.elegirPalabra();
-    this.juegoIniciado=true;
+    this.juegoIniciado = true;
     this.letrasAdivinadas = [];
     this.intentosRestantes = 6;
     this.letrasPresionadas.clear();
     this.botonesColores = {};
-    this.mostrarPista=false;
+    this.mostrarPista = false;
 
     console.log(this.palabraAAdivinar);
 
-    this.usuarioLogeado = this.authService.getUser();
+    this.usuarioLogeado = this.authService.usuarioLogeado;
 
     this.puntajeService.getPuntajesAhorcado().subscribe((listaPuntajes) => {
       this.puntajes = listaPuntajes;
     });
   }
 
-  elegirPalabra(): void{
-    const indice=Math.floor(Math.random() * this.palabrasConPistas.length);
+  elegirPalabra(): void {
+    const indice = Math.floor(Math.random() * this.palabrasConPistas.length);
 
-    this.palabraAAdivinar=this.palabrasConPistas[indice].palabra;
-    this.pista=this.palabrasConPistas[indice].pista;
+    this.palabraAAdivinar = this.palabrasConPistas[indice].palabra;
+    this.pista = this.palabrasConPistas[indice].pista;
   }
 
   manejarAdivinanza(letra: string): void {
@@ -292,36 +292,8 @@ export class AhorcadoComponent implements OnInit {
           this.letrasAdivinadas.push(letra);
           this.botonesColores[letra] = '#7EFF3E';
 
-          if(this.palabraFueAdivinada())
-          {
-            Swal.fire({
-              icon: 'success',
-              title: '¡Enhorabuena!',
-              html:
-              'La palabra era <b>'+this.palabraAAdivinar+'</b>...<br>¡Acumulas <b>'+this.intentosRestantes+'</b> puntos!',
-              showCancelButton:true,
-              showDenyButton: true,
-              confirmButtonText: '¡Otra palabra!',
-              denyButtonText: 'Ir a otros juegos',
-              cancelButtonText: 'Cancelar',
-            }).then((result) => {
-              if (result.isConfirmed) {
-                this.iniciarJuego();
-              } else if (result.isDenied) {
-                this.router.navigate(['/juegos']);
-              }
-            });
-
-            const nombreUsuario = this.authService.getNombreUser();
-
-            const miPuntaje: Puntaje = {
-              user: this.authService.getNombreUser(),
-              categoria: 'ahorcado',
-              puntaje: this.intentosRestantes,
-              fecha: this.zonaHorariaService.getHoraArg()
-            }
-
-            this.puntajeService.updatePuntajeAhorcado(nombreUsuario as string, miPuntaje);
+          if (this.palabraFueAdivinada()) {
+            this.ganar();
           }
 
         }
@@ -329,33 +301,75 @@ export class AhorcadoComponent implements OnInit {
         this.intentosRestantes--;
         this.botonesColores[letra] = '#FF3E3E';
 
-        if(this.intentosRestantes==0)
-        {
-          Swal.fire({
-            icon: 'error',
-            title: 'Ups! ya no te quedan intentos...',
-            html:
-            'La palabra era <b>'+this.palabraAAdivinar+'</b>...<br>' +
-            '¡Intentalo de nuevo!',
-            showCancelButton:true,
-            showDenyButton: true,
-            confirmButtonText: 'Reiniciar',
-            denyButtonText: 'Ir a otros juegos',
-            cancelButtonText: 'Cancelar',
-          }).then((result) => {
-            if (result.isConfirmed) {
-              this.iniciarJuego();
-            } else if (result.isDenied) {
-              this.router.navigate(['/juegos']);
-            }
-          });
+        if (this.intentosRestantes < 1) {
+          this.perder();
         }
       }
     }
 
     const enviarMensajeSnd = new Audio();
-    enviarMensajeSnd.src='../../../assets/juegos/sonidos/click.wav'
+    enviarMensajeSnd.src = '../../../assets/juegos/sonidos/click.wav'
     enviarMensajeSnd.play();
+  }
+
+  ganar(){
+    Swal.fire({
+      icon: 'success',
+      title: '¡Enhorabuena!',
+      html:
+        'La palabra era <b>' + this.palabraAAdivinar + '</b>...<br>¡Acumulas <b>' + this.intentosRestantes + '</b> puntos!',
+      showCancelButton: true,
+      showDenyButton: true,
+      confirmButtonText: '¡Otra palabra!',
+      denyButtonText: 'Ir a otros juegos',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.iniciarJuego();
+      } else if (result.isDenied) {
+        this.router.navigate(['/juegos']);
+      }
+    });
+
+    const nombreUsuario = this.authService.nombreUsuario;
+
+    const miPuntaje: Puntaje = {
+      user: this.authService.nombreUsuario,
+      categoria: 'ahorcado',
+      puntaje: this.intentosRestantes,
+      fecha: this.zonaHorariaService.getHoraArg()
+    }
+
+    this.puntajeService.updatePuntajeAhorcado(nombreUsuario as string, miPuntaje);
+
+    const woohoo = new Audio();
+    woohoo.src = '../../../assets/juegos/sonidos/woohoo.wav'
+    woohoo.play();
+  }
+
+  perder(){
+    Swal.fire({
+      icon: 'error',
+      title: 'Ups! ya no te quedan intentos...',
+      html:
+        'La palabra era <b>' + this.palabraAAdivinar + '</b>...<br>' +
+        '¡Intentalo de nuevo!',
+      showCancelButton: true,
+      showDenyButton: true,
+      confirmButtonText: 'Reiniciar',
+      denyButtonText: 'Ir a otros juegos',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.iniciarJuego();
+      } else if (result.isDenied) {
+        this.router.navigate(['/juegos']);
+      }
+    });
+
+    const risasSnd = new Audio();
+    risasSnd.src = '../../../assets/juegos/sonidos/risas.wav'
+    risasSnd.play();
   }
 
   palabraFueAdivinada(): boolean {
@@ -366,15 +380,15 @@ export class AhorcadoComponent implements OnInit {
     return letrasAdivinadasUnicas === palabraAAdivinarUnica;
   }
 
-  sePuedeSeguirAdivinando(): boolean{
-    return this.intentosRestantes>0 && !this.palabraFueAdivinada();
+  sePuedeSeguirAdivinando(): boolean {
+    return this.intentosRestantes > 0 && !this.palabraFueAdivinada();
   }
 
   quitarTildes(palabra: string): string {
     return palabra.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 
-  togglePista(): void{
+  togglePista(): void {
     this.mostrarPista = !this.mostrarPista;
   }
 }

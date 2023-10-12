@@ -21,6 +21,11 @@ export class PuntajeService {
     return addDoc(puntajeCollection, puntaje);
   }
 
+  addPuntajePreguntas(puntaje: Puntaje) {
+    const puntajeCollection = collection(this.firestore, 'puntajes-preguntas');
+    return addDoc(puntajeCollection, puntaje);
+  }
+
   async updatePuntajeAhorcado(user: string, puntaje: Puntaje) {
     const puntajeCollection = collection(this.firestore, 'puntajes-ahorcado');
     const q = query(puntajeCollection, where('user', '==', user), limit(1));
@@ -32,11 +37,29 @@ export class PuntajeService {
         const documentSnapshot = querySnapshot.docs[0];
         const docRef = doc(puntajeCollection, documentSnapshot.id);
 
-        await updateDoc(docRef, {puntaje: increment(puntaje.puntaje)});
-        console.log('Documento actualizado con éxito.');
+        await updateDoc(docRef, { puntaje: increment(puntaje.puntaje) });
       } else {
         this.addPuntajeAhorcado(puntaje);
-        console.log('No se encontraron documentos con el nombre proporcionado.');
+      }
+    } catch (error) {
+      console.error('Error al buscar y actualizar el documento:', error);
+    }
+  }
+
+  async updatePuntajePreguntas(user: string, puntaje: Puntaje) {
+    const puntajeCollection = collection(this.firestore, 'puntajes-preguntas');
+    const q = query(puntajeCollection, where('user', '==', user), limit(1));
+
+    try {
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        const documentSnapshot = querySnapshot.docs[0];
+        const docRef = doc(puntajeCollection, documentSnapshot.id);
+
+        await updateDoc(docRef, { puntaje: increment(puntaje.puntaje) });
+      } else {
+        this.addPuntajePreguntas(puntaje);
       }
     } catch (error) {
       console.error('Error al buscar y actualizar el documento:', error);
@@ -45,14 +68,21 @@ export class PuntajeService {
 
   getPuntajesMayorOMenor(): Observable<Puntaje[]> {
     const chatCollection = collection(this.firestore, 'puntajes-mom');
-    const q = query(chatCollection, orderBy('puntaje', 'desc'), limit(5));
+    const q = query(chatCollection, orderBy('puntaje', 'desc'), limit(20));
 
     return collectionData(q) as Observable<Puntaje[]>;
   }
 
   getPuntajesAhorcado(): Observable<Puntaje[]> {
     const chatCollection = collection(this.firestore, 'puntajes-ahorcado');
-    const q = query(chatCollection, orderBy('puntaje', 'desc'), limit(5));
+    const q = query(chatCollection, orderBy('puntaje', 'desc'), limit(20));
+
+    return collectionData(q) as Observable<Puntaje[]>;
+  }
+
+  getPuntajesPreguntas(): Observable<Puntaje[]> {
+    const chatCollection = collection(this.firestore, 'puntajes-preguntas');
+    const q = query(chatCollection, orderBy('puntaje', 'desc'), limit(20));
 
     return collectionData(q) as Observable<Puntaje[]>;
   }

@@ -20,7 +20,7 @@
 
     <img id="hombre-ahorcado" src='../../../../assets/juegos/ahorcado/hombre/ahorcado{{intentosRestantes}}.png'>
 
-    <button type="button" id="btn-pista" (click)="togglePista()">¿Una pista?</button>
+    <button type="button" id="btn-pista" (click)="togglePista()" [disabled]="this.mostrarPista">¿Una pista?</button>
     <input id="inputCampo" type="text" [value]="mostrarPista ? pista : ''" readonly>
 
     <p class="letra-adivinanza">

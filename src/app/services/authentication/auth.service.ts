@@ -1,41 +1,52 @@
-import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
- 
+import { Injectable, OnInit } from '@angular/core';
+import {AngularFireAuth} from '@angular/fire/compat/auth';
+import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
-  
-  constructor(private auth: Auth) {
+export class AuthService implements OnInit {
+
+  usuarioLogeado: Observable<any>;
+  nombreUsuario: string | null = null;
+
+  //TODO: sacar del ctor
+  constructor(private auth: AngularFireAuth) {
+
+    this.usuarioLogeado=this.auth.authState;
+
+    this.usuarioLogeado.subscribe((user)=>{
+      this.nombreUsuario=this.getNombreUser(user.email);
+    });
   }
 
-  getUser(){
+  ngOnInit() {}
+
+  getUser() {
     return this.auth.currentUser;
   }
 
-  getNombreUser(){
-    let nombreUser: string | undefined='';
+  getNombreUser(_email: string | null = '') {
+    let nombreUser: string | undefined = '';
 
-    if(this.auth.currentUser?.email !== null)
-    {
-      const indiceArroba = this.auth.currentUser?.email?.indexOf('@');
+    if (_email !== null) {
+      const indiceArroba = _email?.indexOf('@');
       if (indiceArroba !== -1) {
-        nombreUser = this.auth.currentUser?.email?.slice(0, indiceArroba);
+        nombreUser = _email?.slice(0, indiceArroba);
       }
     }
-
     return nombreUser;
   }
 
-  registrarse(email: string, password: string){
-    return createUserWithEmailAndPassword(this.auth, email, password);
+  async registrarse(email: string, password: string) {
+    return this.auth.createUserWithEmailAndPassword(email, password);
   }
 
-  iniciarSesion(email: string, password: string) {
-    return signInWithEmailAndPassword(this.auth, email, password);
+  async iniciarSesion(email: string, password: string) {
+    return this.auth.signInWithEmailAndPassword(email, password);
   }
 
   cerrarSesion() {
-    return signOut(this.auth);
+    return this.auth.signOut();
   }
 }

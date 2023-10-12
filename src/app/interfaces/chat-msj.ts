@@ -1,6 +1,6 @@
 export interface ChatMsj {
     id: string;
-    user: string | undefined;
+    user: string | null;
     texto: string;
     fecha: string;
 }

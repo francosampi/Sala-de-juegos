@@ -11,11 +11,16 @@ export class TablaPuntajesComponent implements OnInit {
 
   constructor(private authService: AuthService) {}
 
-  usuarioLogeado: string | undefined='';
+  usuarioLogeado: string | null = null;
+  mostrarRanking: boolean =true;
 
   ngOnInit(): void {
-    this.usuarioLogeado = this.authService.getNombreUser();
+    this.usuarioLogeado = this.authService.nombreUsuario;
   }
 
   @Input() listaPuntajes: Puntaje[]=[];
+
+  toggleRanking(){
+    this.mostrarRanking=!this.mostrarRanking;
+  }
 }

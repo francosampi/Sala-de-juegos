@@ -1,5 +1,5 @@
 export interface Puntaje {
-    user: string | undefined;
+    user: string | null;
     categoria: string;
     puntaje: number,
     fecha: string;

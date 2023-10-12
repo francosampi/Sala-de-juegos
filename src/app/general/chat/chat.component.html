@@ -1,7 +1,7 @@
 <div *ngIf="usuarioLogeado && !mostrarChat" class="chat-oculto-container">
     <div class="chat-oculto-header" (click)="mostrarChatYScrollear()">
         Sala de chat
-        <img src="../../../assets/chat/chat-globo.png" class="chat-icono-header">
+        <span class="chat-nombre-usuario">({{usuarioNombre!}})</span>
         <img src="../../../assets/chat/chat-flecha.png" class="chat-btn-header chat-btn-header-ocultar">
     </div>
 </div>
@@ -9,6 +9,7 @@
 <div class="card chat-container" *ngIf="usuarioLogeado && mostrarChat">
     <div class="card-header" (click)="mostrarChat=false">
         Sala de chat
+        <span class="chat-nombre-usuario">({{usuarioNombre!}})</span>
         <img src="../../../assets/chat/chat-flecha.png" class="chat-btn-header">
     </div>
 
