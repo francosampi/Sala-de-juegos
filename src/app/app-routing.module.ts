@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: "registrar", loadChildren: () => import('./general/registrar/registrar.module').then(m => m.RegistrarModule) },
   { path: "juegos", loadChildren: () => import('./general/juegos/juegos.module').then(m => m.JuegosModule)},
   { path: "acercade", loadChildren: () => import('./general/acercade/acercade.module').then(m => m.AcercadeModule)},
+  { path: "encuesta", loadChildren: () => import('./general/encuesta/encuesta.module').then(m => m.EncuestaModule)},
 
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
 

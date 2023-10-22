@@ -4,6 +4,7 @@
     <a (click)="irAJuegosHandler()">JUEGOS</a>
     <a routerLink="/acercade">ALUMNO</a>
     <a *ngIf="!usuarioLogeado" routerLink="/login">ENTRAR</a>
+    <a *ngIf="usuarioLogeado" routerLink="/encuesta">ENCUESTA</a>
     <a *ngIf="usuarioLogeado" (click)="salir()">SALIR</a>
     <div id="indicator"></div>
   </nav>

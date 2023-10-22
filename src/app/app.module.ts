@@ -7,22 +7,23 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-import { NavbarModule } from './general/navbar/navbar.module';
 import { BienvenidoModule } from './general/bienvenido/bienvenido.module';
-import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { EncuestaModule } from './general/encuesta/encuesta.module';
+import { NavbarComponent } from './general/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    NavbarModule,
     BienvenidoModule,
+    EncuestaModule,
     AngularFireAuthModule,
     provideFirebaseApp( () => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),

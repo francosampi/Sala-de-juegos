@@ -4,7 +4,7 @@
 	box-sizing: border-box;
 }
 
-body {
+.contenedor {
 	background-color: #28223F;
 	font-family: Montserrat, sans-serif;
 	display: flex;
