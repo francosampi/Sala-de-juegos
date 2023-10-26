@@ -7,6 +7,7 @@ import { AhorcadoComponent } from './ahorcado/ahorcado.component';
 import { ChatModule } from '../chat/chat.module';
 import { TablaPuntajesComponent } from './tabla-puntajes/tabla-puntajes.component';
 import { PreguntasComponent } from './preguntas/preguntas.component';
+import { PreguntadosComponent } from './preguntados/preguntados.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { PreguntasComponent } from './preguntas/preguntas.component';
     MayorOMenorComponent,
     AhorcadoComponent,
     TablaPuntajesComponent,
-    PreguntasComponent
+    PreguntasComponent,
+    PreguntadosComponent
   ],
   imports: [
     CommonModule,

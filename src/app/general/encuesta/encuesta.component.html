@@ -1,1 +1,243 @@
-<p>encuesta works!</p>
+<div class="contenedor">
+    <div class="container">
+        <div *ngIf="mostrarFormulario" class="card mt-4">
+            <div class="card-header">
+                Encuesta
+            </div>
+            <div class="card-body row p-4">
+                <form [formGroup]="form" class="form-group" (ngSubmit)="enviarEncuesta()">
+                    <div class="mb-5">
+                        <h2 class="card-title mb-4">¡Danos tu opinión!</h2>
+                        <p class="card-text">Cuéntanos que te pareció la experiencia en nuestra página...</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input formControlName="nombre" type="text" class="form-control" placeholder="Ej: Fulanito">
+                    </div>
+                    <div *ngIf="form.controls['nombre'].errors != null">
+                        <div class="alert alert-danger"
+                            *ngIf="form.controls['nombre'].errors!['required'] && form.controls['nombre'].touched">
+                            El nombre es <b>requerido</b>.
+                        </div>
+                        <div class="alert alert-danger"
+                            *ngIf="form.controls['nombre'].errors!['maxlength'] && form.controls['nombre'].touched">
+                            El nombre es muy <b>largo</b>.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="apellido" class="form-label">Apellido</label>
+                        <input formControlName="apellido" type="text" class="form-control" placeholder="Ej: Menganito">
+                    </div>
+                    <div *ngIf="form.controls['apellido'].errors != null">
+                        <div class="alert alert-danger"
+                            *ngIf="form.controls['apellido'].errors!['required'] && form.controls['apellido'].touched">
+                            El apellido es <b>requerido</b>.
+                        </div>
+                        <div class="alert alert-danger"
+                            *ngIf="form.controls['apellido'].errors!['maxlength'] && form.controls['apellido'].touched">
+                            El apellido es muy <b>largo</b>.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="edad" class="form-label">Edad</label>
+                        <input formControlName="edad" type="number" class="form-control" placeholder="Ej: 24">
+                    </div>
+                    <div *ngIf="form.controls['edad'].errors != null">
+                        <div class="alert alert-danger"
+                            *ngIf="form.controls['edad'].errors!['required'] && form.controls['edad'].touched">
+                            La edad es <b>requerida</b>.
+                        </div>
+                        <div class="alert alert-danger"
+                            *ngIf="form.controls['edad'].errors!['pattern'] && form.controls['edad'].touched">
+                            La edad deben ser sólo <b>números</b>.
+                        </div>
+                        <div class="alert alert-danger"
+                            *ngIf="form.controls['edad'].errors!['min'] && form.controls['edad'].touched">
+                            La edad debe ser un número <b>mayor a 18</b>.
+                        </div>
+                        <div class="alert alert-danger"
+                            *ngIf="form.controls['edad'].errors!['max'] && form.controls['edad'].touched">
+                            La edad debe ser un número <b>menor a 99</b>.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="telefono" class="form-label">Teléfono</label>
+                        <div class="input-group">
+                            <div class="input-group-text">+54</div>
+                            <input formControlName="telefono" type="number" class="form-control"
+                                placeholder="Ej: 1111111111">
+                        </div>
+                    </div>
+                    <div *ngIf="form.controls['telefono'].errors != null">
+                        <div class="alert alert-danger"
+                            *ngIf="form.controls['telefono'].errors!['required'] && form.controls['telefono'].touched">
+                            El teléfono es <b>requerido</b>.
+                        </div>
+                        <div class="alert alert-danger"
+                            *ngIf="(form.controls['telefono'].errors!['pattern']) && form.controls['telefono'].touched">
+                            El teléfono debe ser un número de <b>8 dígitos</b>.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="comentario" class="form-label">Comentario</label>
+                        <textarea formControlName="comentario" type="text" class="form-control"
+                            placeholder="Describe tu experiencia aquí..."></textarea>
+                    </div>
+                    <div *ngIf="form.controls['comentario'].errors != null">
+                        <div class="alert alert-danger"
+                            *ngIf="form.controls['comentario'].errors!['required'] && form.controls['comentario'].touched">
+                            El comentario es <b>requerido</b>.
+                        </div>
+                        <div class="alert alert-danger"
+                            *ngIf="form.controls['comentario'].errors!['maxlength'] && form.controls['comentario'].touched">
+                            El comentario es muy <b>largo</b>.
+                        </div>
+                    </div>
+
+                    <!--PUNTAJE PÁGINA-->
+                    <div class="mb-4">
+                        <label class="mb-2" for="puntajePag">Del <b>1 al 5</b>. ¿Qué tal te pareció la página?</label>
+                        <div class="form-check">
+                            <div class="form-check form-check-inline">
+                                <input formControlName="puntajePag" class="form-check-input" type="radio"
+                                    name="puntajePag" id="puntajePag1" value="1">
+                                <label class="form-check-label" for="puntajePag1">1</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="puntajePag" class="form-check-input" type="radio"
+                                    name="puntajePag" id="puntajePag2" value="2">
+                                <label class="form-check-label" for="puntajePag2">2</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="puntajePag" class="form-check-input" type="radio"
+                                    name="puntajePag" id="puntajePag3" value="3">
+                                <label class="form-check-label" for="puntajePag3">3</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="puntajePag" class="form-check-input" type="radio"
+                                    name="puntajePag" id="puntajePag4" value="4">
+                                <label class="form-check-label" for="puntajePag4">4</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="puntajePag" class="form-check-input" type="radio"
+                                    name="puntajePag" id="puntajePag5" value="5">
+                                <label class="form-check-label" for="puntajePag5">5</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="puntajePag" class="form-check-input" type="radio"
+                                    name="puntajePag" id="puntajePagSinNota" value="0" checked>
+                                <label class="form-check-label" for="puntajePagSinNota">Sin nota</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--PUNTAJE JUEGOS-->
+                    <div class="mb-4">
+                        <label class="mb-2" for="puntajeJuegos">Del <b>1 al 5</b>. ¿Qué tanto te gustaron los
+                            juegos?</label>
+                        <div class="form-check">
+                            <div class="form-check form-check-inline">
+                                <input formControlName="puntajeJuegos" class="form-check-input" type="radio"
+                                    name="puntajeJuegos" id="puntajeJuegos1" value=1>
+                                <label class="form-check-label" for="puntajeJuegos1">1</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="puntajeJuegos" class="form-check-input" type="radio"
+                                    name="puntajeJuegos" id="puntajeJuegos2" value=2>
+                                <label class="form-check-label" for="puntajeJuegos2">2</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="puntajeJuegos" class="form-check-input" type="radio"
+                                    name="puntajeJuegos" id="puntajeJuegos3" value=3>
+                                <label class="form-check-label" for="puntajeJuegos3">3</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="puntajeJuegos" class="form-check-input" type="radio"
+                                    name="puntajeJuegos" id="puntajeJuegos4" value=4>
+                                <label class="form-check-label" for="puntajeJuegos4">4</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="puntajeJuegos" class="form-check-input" type="radio"
+                                    name="puntajeJuegos" id="puntajeJuegos5" value=5>
+                                <label class="form-check-label" for="puntajeJuegos5">5</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="puntajeJuegos" class="form-check-input" type="radio"
+                                    name="puntajeJuegos" id="puntajeJuegosSinNota" value=0 checked>
+                                <label class="form-check-label" for="puntajeJuegosSinNota">Sin nota</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--PUNTAJE RECOMENDACION-->
+                    <div class="mb-4">
+                        <label class="mb-2" for="puntajeReco">Del <b>1 al 5</b>. ¿Qué tanto recomendarías esta página a
+                            tus
+                            amigos?</label>
+                        <div class="form-check">
+                            <div class="form-check form-check-inline">
+                                <input formControlName="puntajeReco" class="form-check-input" type="radio"
+                                    name="puntajeReco" id="puntajeReco1" value=1>
+                                <label class="form-check-label" for="puntajeReco1">1</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="puntajeReco" class="form-check-input" type="radio"
+                                    name="puntajeReco" id="puntajeReco2" value=2>
+                                <label class="form-check-label" for="puntajeReco2">2</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="puntajeReco" class="form-check-input" type="radio"
+                                    name="puntajeReco" id="puntajeReco3" value=3>
+                                <label class="form-check-label" for="puntajeReco3">3</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="puntajeReco" class="form-check-input" type="radio"
+                                    name="puntajeReco" id="puntajeReco4" value=4>
+                                <label class="form-check-label" for="puntajeReco4">4</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="puntajeReco" class="form-check-input" type="radio"
+                                    name="puntajeReco" id="puntajeReco5" value=5>
+                                <label class="form-check-label" for="puntajeReco5">5</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="puntajeReco" class="form-check-input" type="radio"
+                                    name="puntajeReco" id="puntajeRecoSinNota" value=0 checked>
+                                <label class="form-check-label" for="puntajeRecoSinNota">Sin nota</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center w-100">
+                        <button [disabled]="form.invalid" class="btn btn-primary mt-4 w-50">Enviar</button>
+                        <button (click)="mostrarFormulario=false" class="btn btn-primary mt-4 w-50">Mostrar
+                            comentarios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="container" *ngIf="!mostrarFormulario">
+            <div *ngIf="encuestasUsuarios">
+                <h2 class="my-4" style="color: azure;">Comentarios de la página ({{encuestasUsuarios.length}}):</h2>
+
+                <div class="encuesta my-2" *ngFor="let encuesta of encuestasUsuarios">
+                    <p>
+                        <b>{{encuesta.nombre}} {{encuesta.apellido}}</b> ({{encuesta.edad}} años)
+                    </p>
+                    <q><cite>{{encuesta.comentario}}</cite></q>
+                    <p>
+                        <i class="encuestaFecha">
+                            Enviado el {{encuesta.fecha}}
+                        </i>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

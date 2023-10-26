@@ -1,0 +1,50 @@
+<div id="game-container">
+    <div *ngIf="!juegoIniciado" class="start-button-container">
+        <div id="wrapper">
+            <a (click)="iniciarJuego()" class="btn-empezar">
+                <div class="dots-container">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <span>EMPEZAR</span>
+            </a>
+        </div>
+    </div>
+
+    <div *ngIf="juegoIniciado">
+        <div *ngIf="preguntaMostrada">
+            <div class="card">
+                <div class="card-header p-4" style="background-color: black; color: rgb(163, 64, 255);">
+                    <h3>CATEGORÍA: {{categoriaActual.toUpperCase()}}</h3>
+                    <div *ngIf="tiempo>0" id="tabla-datos">
+                        TIEMPO: {{tiempo}}
+                    </div>
+                </div>
+                <div class="card-body" style="background-color: black;">
+                    <img id="imagenPregunta" src="{{imagenSrc}}">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">{{ preguntaMostrada?.pregunta }}</div>
+                <div class="card-body">
+                    <button *ngFor="let opcion of opciones" type="button" class="btn btn-primary my-1 btn-opcion w-100"
+                        (click)="verificarRespuesta(opcion)">
+                        {{ opcion }}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <app-tabla-puntajes [listaPuntajes]="puntajes"></app-tabla-puntajes>
+        <button type="button" class="btn btn-secondary w-100" (click)="iniciarJuego()">
+            <b>
+                REINICIAR
+            </b>
+        </button>
+        <div *ngIf="mostrarMsjCorrecto">
+            <b>¡CORRECTO!</b>
+        </div>
+    </div>
+</div>
+<app-chat></app-chat>

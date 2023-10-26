@@ -26,6 +26,11 @@ export class PuntajeService {
     return addDoc(puntajeCollection, puntaje);
   }
 
+  addPuntajePreguntados(puntaje: Puntaje) {
+    const puntajeCollection = collection(this.firestore, 'puntajes-preguntados');
+    return addDoc(puntajeCollection, puntaje);
+  }
+
   async updatePuntajeAhorcado(user: string, puntaje: Puntaje) {
     const puntajeCollection = collection(this.firestore, 'puntajes-ahorcado');
     const q = query(puntajeCollection, where('user', '==', user), limit(1));
@@ -66,6 +71,26 @@ export class PuntajeService {
     }
   }
 
+  async updatePuntajePreguntados(user: string, puntaje: Puntaje) {
+    const puntajeCollection = collection(this.firestore, 'puntajes-preguntados');
+    const q = query(puntajeCollection, where('user', '==', user), limit(1));
+
+    try {
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        const documentSnapshot = querySnapshot.docs[0];
+        const docRef = doc(puntajeCollection, documentSnapshot.id);
+
+        await updateDoc(docRef, { puntaje: increment(puntaje.puntaje), fecha: puntaje.fecha });
+      } else {
+        this.addPuntajePreguntados(puntaje);
+      }
+    } catch (error) {
+      console.error('Error al buscar y actualizar el documento:', error);
+    }
+  }
+
   getPuntajesMayorOMenor(): Observable<Puntaje[]> {
     const chatCollection = collection(this.firestore, 'puntajes-mom');
     const q = query(chatCollection, orderBy('puntaje', 'desc'), limit(20));
@@ -82,6 +107,13 @@ export class PuntajeService {
 
   getPuntajesPreguntas(): Observable<Puntaje[]> {
     const chatCollection = collection(this.firestore, 'puntajes-preguntas');
+    const q = query(chatCollection, orderBy('puntaje', 'desc'), limit(20));
+
+    return collectionData(q) as Observable<Puntaje[]>;
+  }
+
+  getPuntajesPreguntados(): Observable<Puntaje[]> {
+    const chatCollection = collection(this.firestore, 'puntajes-preguntados');
     const q = query(chatCollection, orderBy('puntaje', 'desc'), limit(20));
 
     return collectionData(q) as Observable<Puntaje[]>;

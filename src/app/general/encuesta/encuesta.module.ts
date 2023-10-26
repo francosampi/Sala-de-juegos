@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EncuestaComponent } from './encuesta.component';
 import { EncuestaRoutingModule } from './encuesta-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -11,7 +12,8 @@ import { EncuestaRoutingModule } from './encuesta-routing.module';
   ],
   imports: [
     CommonModule,
-    EncuestaRoutingModule
+    EncuestaRoutingModule,
+    ReactiveFormsModule
   ],
   exports: [
     EncuestaComponent

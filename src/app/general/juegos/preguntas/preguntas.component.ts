@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PREGUNTAS } from './preguntas-listado'
+import { PREGUNTAS } from '../preguntas-listado'
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/authentication/auth.service';

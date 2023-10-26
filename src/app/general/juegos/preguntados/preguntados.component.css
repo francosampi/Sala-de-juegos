@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'learners';
+    src: url('../../../../assets/fonts/Learners.ttf') format('truetype')
+}
+
+#game-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    height: 100vh;
+}
+
+#imagenPregunta{
+    height: 200px;
+    width: 400px;
+}

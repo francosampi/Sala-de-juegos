@@ -1,7 +1,7 @@
 <div class="contenedor" id="background">
     <div class="container d-flex align-items-center justify-content-center mt-5">
         <div class="container col-md-3">
-            <div class="card text-center" style="width: 20rem;">
+            <div class="card text-center" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">
                         Ahorcado
@@ -17,7 +17,7 @@
         </div>
 
         <div class="container col-md-3">
-            <div class="card text-center" style="width: 20rem;">
+            <div class="card text-center" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">¿Mayor o menor?
                         <img class="juego-icono"
@@ -34,18 +34,34 @@
         </div>
 
         <div class="container col-md-3">
-            <div class="card text-center" style="width: 20rem;">
+            <div class="card text-center" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">Preguntas y respuestas
+                    <h5 class="card-title">Carrera de mente
                         <img class="juego-icono"
-                            src="../../../../assets/juegos/preguntas/iconos/preguntas_icono.png">
+                            src="../../../../assets/juegos/preguntas/iconos/preguntas_icono_new.png">
                     </h5>
                     <p class="card-text">
                         Tira un dado y responde correctamente las <b>preguntas</b> hasta llegar a la meta!
                     </p>
                     <button routerLink="/juegos/preguntas" class="btn btn-primary juego-botonjugar">JUGAR</button>
                 </div>
-                <button class="btn btn-secondary" (click)="infoJuego(3)">¿Cómo jugar?</button>
+                <button class="btn btn-secondary" routerLink="/acercade">¿Cómo jugar?</button>
+            </div>
+        </div>
+
+        <div class="container col-md-3">
+            <div class="card text-center" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Preguntados
+                        <img class="juego-icono"
+                            src="../../../../assets/juegos/preguntas/iconos/preguntas_icono.png">
+                    </h5>
+                    <p class="card-text">
+                        Responde correctamente las <b>preguntas</b> antes de que termine el tiempo!
+                    </p>
+                    <button routerLink="/juegos/preguntados" class="btn btn-primary juego-botonjugar">JUGAR</button>
+                </div>
+                <button class="btn btn-secondary" routerLink="/acercade">¿Cómo jugar?</button>
             </div>
         </div>
     </div>

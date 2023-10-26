@@ -32,15 +32,8 @@ export class JuegosComponent {
         'Consigue la mayor racha posible para aparecer en el <b>tablero</b> de mejores jugadores (o los más suertudos).<br><br>'+
         '¡Buena suerte!'
         break;
-       case 3:
-        msj='<h3>Preguntas y respuestas</h3><br><br>'+
-        '¡El <b>jugador</b> deberá atravesar un <b>tablero</b> y llegar a la <b>meta</b>!<br><br>'+
-        'Para lograrlo, deberás girar un <b>dado</b> y contestar una <b>pregunta</b> de una <b>categoría</b> en específico...<br><br>'+
-        'Este juego cuenta con modificadores de <b>dificultad</b>:<br><br>'+
-        'Estas ajustarán la cantidad de <b>puntos ganados por pregunta acertada</b>, las <b>vidas</b> al empezar la partida, ¡y la <b>longitud</b> del tablero!<br><br>'+
-        '¡Buena suerte!'
-        break;
-    }
+    };
+
     Swal.fire({
       html: msj
     });
