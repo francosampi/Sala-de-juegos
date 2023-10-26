@@ -14,7 +14,7 @@ import { ImagenesService } from 'src/app/services/imagenes/imagenes.service';
   styleUrls: ['./preguntados.component.css', '../juegos-btn-empezar.css']
 })
 export class PreguntadosComponent implements OnInit, OnDestroy {
-  juegoIniciado: boolean = true;
+  juegoIniciado: boolean = false;
   jugadorPos: number = 0;
   categorias = Object.keys(PREGUNTAS);
   categoriaActual: string = '';
@@ -32,10 +32,7 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.puntajeService.getPuntajesPreguntados().subscribe((listaPuntajes) => {
       this.puntajes = listaPuntajes;
-      console.log(listaPuntajes);
     });
-
-    this.iniciarJuego();
   }
 
   ngOnDestroy(): void {
@@ -57,8 +54,6 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
   }
 
   elegirCategoria() {
-    this.mostrarMsjCorrecto = false;
-
     const categoriaSalida = Math.floor(Math.random() * 3);
 
     switch (categoriaSalida) {

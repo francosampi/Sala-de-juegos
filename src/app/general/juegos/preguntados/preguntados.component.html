@@ -21,9 +21,13 @@
                     <div *ngIf="tiempo>0" id="tabla-datos">
                         TIEMPO: {{tiempo}}
                     </div>
-                </div>
-                <div class="card-body" style="background-color: black;">
-                    <img id="imagenPregunta" src="{{imagenSrc}}">
+                    <img class="my-4" id="imagenPregunta" src="{{imagenSrc}}">
+                    <div *ngIf="mostrarMsjCorrecto">
+                        <b style="color: greenyellow;">¡CORRECTO!</b>
+                    </div>
+                    <div *ngIf="!mostrarMsjCorrecto">
+                        <b>¡PIENSA RÁPIDO!</b>
+                    </div>
                 </div>
             </div>
             <div class="card">
@@ -42,9 +46,6 @@
                 REINICIAR
             </b>
         </button>
-        <div *ngIf="mostrarMsjCorrecto">
-            <b>¡CORRECTO!</b>
-        </div>
     </div>
 </div>
 <app-chat></app-chat>
